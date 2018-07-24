@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="linux-mysql"/>
+
+
+
+
+  <meta name="keywords" content="linux-mysql" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="http://www.sitec.cc/">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.sitec.cc/2015/09/15/linux-mysql/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 阿里云主机安装myslq5.5和tomcat 7 - http://www.sitec.cc/ </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">http://www.sitec.cc/</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">http://www.sitec.cc/</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          阿里云主机安装myslq5.5和tomcat 7
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-09-15
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/linux/">linux</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-text">环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#linux"><span class="toc-text">linux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看mysql-是否安装"><span class="toc-text">查看mysql 是否安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#卸载旧版本的mysql"><span class="toc-text">卸载旧版本的mysql</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#连接跳板机"><span class="toc-text">连接跳板机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载mysql到当前目录"><span class="toc-text">下载mysql到当前目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传输到阿里云服务器"><span class="toc-text">传输到阿里云服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连接阿里云服务器"><span class="toc-text">连接阿里云服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用rpm命令安装"><span class="toc-text">用rpm命令安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改root密码"><span class="toc-text">修改root密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动-停止mysql"><span class="toc-text">启动 停止mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#登陆mysql"><span class="toc-text">登陆mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看mysql安装目录"><span class="toc-text">查看mysql安装目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载tomcat7"><span class="toc-text">下载tomcat7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解压-然后根据bin目录下面的命令运行服务"><span class="toc-text">解压 然后根据bin目录下面的命令运行服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#假如是el5的服务器"><span class="toc-text">假如是el5的服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql-远程连接"><span class="toc-text">mysql 远程连接</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><blockquote>
+<p>先连接到内网跳板机器，然后通过内网跳板机连接阿里云</p>
+</blockquote>
+<h3 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rpm -q centos-release </span><br><span class="line">#centos-release-6-3.el6.centos.9.x86_64</span><br><span class="line"></span><br><span class="line">cat /etc/issue</span><br></pre></td></tr></table></figure>
+<h3 id="查看mysql-是否安装"><a href="#查看mysql-是否安装" class="headerlink" title="查看mysql 是否安装"></a>查看mysql 是否安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep mysql</span><br></pre></td></tr></table></figure>
+<h3 id="卸载旧版本的mysql"><a href="#卸载旧版本的mysql" class="headerlink" title="卸载旧版本的mysql"></a>卸载旧版本的mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum -y remove mysql-xx-xx</span><br></pre></td></tr></table></figure>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="连接跳板机"><a href="#连接跳板机" class="headerlink" title="连接跳板机"></a>连接跳板机</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh jfy@test.xxx.com -p 6021</span><br></pre></td></tr></table></figure>
+<h3 id="下载mysql到当前目录"><a href="#下载mysql到当前目录" class="headerlink" title="下载mysql到当前目录"></a>下载mysql到当前目录</h3><p>目前5.5的最新版5.5.45，官网地址 <a href="http://dev.mysql.com/downloads/mysql/#downloads" target="_blank" rel="noopener">http://dev.mysql.com/downloads/mysql/#downloads</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget -c http://dev.mysql.com/get/Downloads/MySQL-5.5/MySQL-server-5.5.45-1.el6.x86_64.rpm</span><br><span class="line">wget -c http://dev.mysql.com/get/Downloads/MySQL-5.5/MySQL-client-5.5.45-1.el6.x86_64.rpm</span><br><span class="line">wget -c http://dev.mysql.com/get/Downloads/MySQL-5.5/MySQL-devel-5.5.45-1.el6.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<h3 id="传输到阿里云服务器"><a href="#传输到阿里云服务器" class="headerlink" title="传输到阿里云服务器"></a>传输到阿里云服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r . root@10.xxx.xxx.xxx:/home</span><br></pre></td></tr></table></figure>
+<h3 id="连接阿里云服务器"><a href="#连接阿里云服务器" class="headerlink" title="连接阿里云服务器"></a>连接阿里云服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh jfy@10.xxx.xx.xx-p 22</span><br></pre></td></tr></table></figure>
+<h3 id="用rpm命令安装"><a href="#用rpm命令安装" class="headerlink" title="用rpm命令安装"></a>用rpm命令安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh MySQL-server-5.5.45-1.el6.x86_64.rpm</span><br><span class="line">rpm -ivh MySQL-client-5.5.45-1.el6.x86_64.rpm</span><br><span class="line">rpm -ivh MySQL-devel-5.5.45-1.el6.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<h3 id="修改root密码"><a href="#修改root密码" class="headerlink" title="修改root密码"></a>修改root密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/mysqladmin -u root password &apos;123456&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="启动-停止mysql"><a href="#启动-停止mysql" class="headerlink" title="启动 停止mysql"></a>启动 停止mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service mysql start</span><br><span class="line">service mysql stop</span><br></pre></td></tr></table></figure>
+<h3 id="登陆mysql"><a href="#登陆mysql" class="headerlink" title="登陆mysql"></a>登陆mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<h3 id="查看mysql安装目录"><a href="#查看mysql安装目录" class="headerlink" title="查看mysql安装目录"></a>查看mysql安装目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whereis mysql</span><br></pre></td></tr></table></figure>
+<h3 id="下载tomcat7"><a href="#下载tomcat7" class="headerlink" title="下载tomcat7"></a>下载tomcat7</h3><blockquote>
+<p>地址<a href="http://tomcat.apache.org/download-70.cgi" target="_blank" rel="noopener">http://tomcat.apache.org/download-70.cgi</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c http://mirrors.hust.edu.cn/apache/tomcat/tomcat-7/v7.0.64/bin/apache-tomcat-7.0.64.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="解压-然后根据bin目录下面的命令运行服务"><a href="#解压-然后根据bin目录下面的命令运行服务" class="headerlink" title="解压 然后根据bin目录下面的命令运行服务"></a>解压 然后根据bin目录下面的命令运行服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-tomcat-7.0.64.tar.gz</span><br></pre></td></tr></table></figure>
+<h2 id="假如是el5的服务器"><a href="#假如是el5的服务器" class="headerlink" title="假如是el5的服务器"></a>假如是el5的服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">下载这3个安装</span><br><span class="line">http://cdn.mysql.com//Downloads/MySQL-5.5/MySQL-server-5.5.46-1.rhel5.x86_64.rpm</span><br><span class="line">http://cdn.mysql.com//Downloads/MySQL-5.5/MySQL-client-5.5.46-1.rhel5.x86_64.rpm</span><br><span class="line">http://cdn.mysql.com//Downloads/MySQL-5.5/MySQL-devel-5.5.46-1.rhel5.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<h3 id="mysql-远程连接"><a href="#mysql-远程连接" class="headerlink" title="mysql 远程连接"></a>mysql 远程连接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update user set host=&apos;%&apos; where user=&apos;root&apos; and host=&apos;localhost&apos;;</span><br><span class="line">flush privileges;        #刷新权限表，使配置生效</span><br></pre></td></tr></table></figure>
+<p>如果您想关闭远程连接，恢复mysql的默认设置（只能本地连接），您可以通过以下步骤操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">use mysql                #打开mysql数据库</span><br><span class="line"></span><br><span class="line">#将host设置为localhost表示只能本地连接mysql</span><br><span class="line"></span><br><span class="line">update user set host=&apos;localhost&apos; where user=&apos;root&apos;;</span><br><span class="line"></span><br><span class="line">flush privileges;        #刷新权限表，使配置生效</span><br></pre></td></tr></table></figure></p>
+<p>您也可以添加一个用户名为yuancheng，密码为123456，权限为%（表示任意ip都能连接）的远程连接用户。命令参考如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grant all on *.* to &apos;yuancheng&apos;@&apos;%&apos; identified by &apos;123456&apos;;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.sitec.cc">keeleys</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.sitec.cc/2015/09/15/linux-mysql/">http://www.sitec.cc/2015/09/15/linux-mysql/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/linux/">linux</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2015/10/21/common-kit/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">收集整理的一些java工具类</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2015/08/29/tenginx/">
+        <span class="next-text nav-default">Tengine 的安装以及Tengine + Lua + GraphicsMagick 实现图片裁剪缩放</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">keeleys</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://www.sitec.cc/2015/09/15/linux-mysql/';
+        this.page.identifier = '2015/09/15/linux-mysql/';
+        this.page.title = '阿里云主机安装myslq5.5和tomcat 7';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//sitecc.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

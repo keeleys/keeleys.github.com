@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="用html5的localStorage保存用户名和密码"/>
+
+
+
+
+  <meta name="keywords" content="html5, http://www.sitec.cc/" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="http://www.sitec.cc/">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.sitec.cc/2015/07/20/html-html-localStorage/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 用html5的localStorage保存用户名和密码 - http://www.sitec.cc/ </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">http://www.sitec.cc/</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">http://www.sitec.cc/</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          用html5的localStorage保存用户名和密码
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-07-20
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/html5/">html5</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#js"><span class="toc-text">js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#html-类似的伪代码"><span class="toc-text">html 类似的伪代码</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="js"><a href="#js" class="headerlink" title="js"></a>js</h2><p>用法很简单 把window.localStorage 当map用就可以了。<code>login.account</code>这些都是自定义的键.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"> 	$(<span class="string">"#account"</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//用户名改变自动保存</span></span><br><span class="line">		<span class="built_in">window</span>.localStorage[<span class="string">"login.account"</span>]=$(<span class="keyword">this</span>).val();</span><br><span class="line">	&#125;)</span><br><span class="line">	  	</span><br><span class="line">  	$(<span class="string">"#password"</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//密码先判断是否有勾选保存密码才决定是否保存</span></span><br><span class="line">  		<span class="keyword">if</span>( $(<span class="string">"#saveAccount"</span>).prop(<span class="string">"checked"</span>) )</span><br><span class="line">  			<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>]=$(<span class="keyword">this</span>).val();</span><br><span class="line">  	&#125;)</span><br><span class="line">  	</span><br><span class="line"> 	$(<span class="string">"#saveAccount"</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> 		<span class="keyword">if</span>( $(<span class="keyword">this</span>).prop(<span class="string">"checked"</span>) )<span class="comment">//如果勾选了保存密码 保存当前密码域的数据</span></span><br><span class="line"> 			<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>]=$(<span class="string">"#password"</span>).val();</span><br><span class="line"> 		<span class="keyword">else</span></span><br><span class="line"> 			<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>]=<span class="string">""</span>;</span><br><span class="line"> 	&#125;)</span><br><span class="line"> 	+<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     	<span class="keyword">if</span>(<span class="built_in">window</span>.localStorage[<span class="string">"login.account"</span>])&#123;</span><br><span class="line">     		$(<span class="string">"#account"</span>).val(<span class="built_in">window</span>.localStorage[<span class="string">"login.account"</span>]);</span><br><span class="line">     	&#125;</span><br><span class="line">     	<span class="keyword">if</span>(<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>])&#123;</span><br><span class="line">     		$(<span class="string">"#password"</span>).val(<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>]);</span><br><span class="line">     		$(<span class="string">"#saveAccount"</span>).prop(<span class="string">"checked"</span>,<span class="literal">true</span>);</span><br><span class="line">     	&#125;</span><br><span class="line"> 	&#125;();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="html-类似的伪代码"><a href="#html-类似的伪代码" class="headerlink" title="html 类似的伪代码"></a>html 类似的伪代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">   &lt;label for=&quot;inputtext3&quot; class=&quot;col-sm-2 control-label&quot;&gt;我的账户：&lt;/label&gt;</span><br><span class="line">   &lt;div class=&quot;col-sm-3&quot;&gt;</span><br><span class="line">   &lt;input type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;customer.account&quot;  data-rule=&quot;账户:required;&quot; </span><br><span class="line">   id=&quot;account&quot;  autocomplete=&quot;off&quot; placeholder=&quot;输入用户名/邮箱/手机&quot;&gt; </span><br><span class="line">   &lt;span class=&quot;msg-box&quot; for=&quot;account&quot;&gt;&lt;/span&gt;</span><br><span class="line">   &lt;/div&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line"> &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">   &lt;label for=&quot;inputPassword3&quot; class=&quot;col-sm-2 control-label&quot;&gt;我的密码：&lt;/label&gt;</span><br><span class="line">   &lt;div class=&quot;col-sm-3&quot;&gt;</span><br><span class="line">   &lt;input type=&quot;password&quot; id=&quot;password&quot; class=&quot;form-control&quot; data-rule=&quot;密码:required&quot;</span><br><span class="line">    name=&quot;customer.password&quot;&gt; </span><br><span class="line">    &lt;span class=&quot;msg-box&quot; for=&quot;password&quot;&gt;&lt;/span&gt;</span><br><span class="line">   &lt;/div&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line"> &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">   &lt;div class=&quot;col-sm-offset-2 col-sm-3&quot;&gt;</span><br><span class="line">     &lt;div class=&quot;checkbox&quot;&gt;</span><br><span class="line">       &lt;label&gt;</span><br><span class="line">         &lt;input type=&quot;checkbox&quot; id=&quot;saveAccount&quot;&gt; 记住密码     </span><br><span class="line">       &lt;/label&gt;  </span><br><span class="line">         &lt;span class=&quot;pull-right&quot;&gt;&lt;a href=&quot;$&#123;ctx&#125;/updatePassMail&quot; target=&quot;_blank&quot; class=&quot;forget-pswword &quot;&gt;忘记密码？&lt;/a&gt;&lt;/span&gt;  </span><br><span class="line">     &lt;/div&gt;</span><br><span class="line"> &lt;/div&gt; </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.sitec.cc">keeleys</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.sitec.cc/2015/07/20/html-html-localStorage/">http://www.sitec.cc/2015/07/20/html-html-localStorage/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/html5/">html5</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2015/07/20/html-jsp-page/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">做一个jsp自定义tag的bootstrap3公共分页</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2015/07/15/html-html-header-img/">
+        <span class="next-text nav-default">网站头像上传剪辑</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">keeleys</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://www.sitec.cc/2015/07/20/html-html-localStorage/';
+        this.page.identifier = '2015/07/20/html-html-localStorage/';
+        this.page.title = '用html5的localStorage保存用户名和密码';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//sitecc.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

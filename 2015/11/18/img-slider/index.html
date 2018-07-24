@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="img_slider"/>
+
+
+
+
+  <meta name="keywords" content="img_slider" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="http://www.sitec.cc/">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.sitec.cc/2015/11/18/img-slider/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 图片轮播nivo-slider插件 - http://www.sitec.cc/ </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">http://www.sitec.cc/</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">http://www.sitec.cc/</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          图片轮播nivo-slider插件
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-11-18
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/html-编程记录/">-html -编程记录</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#官网资料"><span class="toc-text">官网资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置参数"><span class="toc-text">配置参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#effect可配置的参数"><span class="toc-text">effect可配置的参数</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="官网资料"><a href="#官网资料" class="headerlink" title="官网资料"></a>官网资料</h2><p><a href="http://demo.dev7studios.com/nivo-slider/" target="_blank" rel="noopener">演示地址</a><br><a href="https://github.com/gilbitron/Nivo-Slider" target="_blank" rel="noopener">github地址</a><br><a href="http://docs.dev7studios.com/jquery-plugins/nivo-slider" target="_blank" rel="noopener">官方文档</a></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;//cdn.bootcss.com/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;//cdn.bootcss.com/jquery-nivoslider/3.2/jquery.nivo.slider.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"slider"</span> <span class="attr">class</span>=<span class="string">"nivoSlider"</span> <span class="attr">style</span>=<span class="string">"text-align: center"</span> &gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">#if</span> <span class="attr">imgList</span>??&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">#list</span> <span class="attr">imgList</span> <span class="attr">as</span> <span class="attr">imgBean</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"$&#123;imgRoot&#125;$&#123;imgBean.imgurl&#125;"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">#list</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">#else</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"$&#123;root!&#125;/image/banner.jpg"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">#if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$(window).load(function() &#123;</span><br><span class="line">	$(&apos;#slider&apos;).nivoSlider(&#123;</span><br><span class="line">		slices: 15, // For slice animations</span><br><span class="line">		boxCols: 8, // For box animations</span><br><span class="line">		boxRows: 4, // For box animations</span><br><span class="line">		animSpeed: 500, // Slide transition speed</span><br><span class="line">		pauseTime: 3000, // How long each slide will show</span><br><span class="line">		directionNav:false,</span><br><span class="line">		effect:&apos;slideInLeft&apos;,</span><br><span class="line">		controlNav:false,</span><br><span class="line">		pauseOnHover:false // 悬浮是否停止</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="配置参数"><a href="#配置参数" class="headerlink" title="配置参数"></a>配置参数</h2><p>effect: 设置幻灯变化效果，可以使用’random’, 或者指定效果如, ‘fold,fade,sliceDown’<br>slices: slice动画效果参数<br>boxCols: box动画效果参数<br>boxRows:box动画效果参数<br>animSpeed: 动画变化速度<br>pauseTime: 每个幻灯时间<br>startSlide: 起始幻灯<br>directionNav: 是否显示“上一个”和“下一个”导航<br>directionNavHide: 是否悬浮显示导航<br>controlNav: 是否显示导航控制<br>controlNavThumbs: 导航是否使用缩略图<br>controlNavThumbsFromRel: 是否让图片使用rel<br>controlNavThumbsSearch: 导航缩略图后缀<br>controlNavThumbsReplace: 导航缩略图替换<br>keyboardNav: 是否键盘导航<br>pauseOnHover: 悬浮是否停止<br>manualAdvance: 是否手动变化幻灯<br>captionOpacity: 标题透明度<br>prevText: 上一张文字设定<br>nextText: 下一张文字设定<br>randomStart: 是否随机开始<br>beforeChange: 函数，在幻灯变化前调用<br>afterChange:函数，在幻灯变化后调用<br>slideshowEnd:函数，在幻灯变化完成调用<br>lastSlide:函数，在最后一个幻灯变化完成调用<br>afterLoad: 函数，slider加载后调用</p>
+<h3 id="effect可配置的参数"><a href="#effect可配置的参数" class="headerlink" title="effect可配置的参数"></a>effect可配置的参数</h3><p>sliceDown<br>sliceDownLeft<br>sliceUp<br>sliceUpLeft<br>sliceUpDown<br>sliceUpDownLeft<br>fold<br>fade<br>random<br>slideInRight<br>slideInLeft<br>boxRandom<br>boxRain<br>boxRainReverse<br>boxRainGrow<br>boxRainGrowReverse</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.sitec.cc">keeleys</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.sitec.cc/2015/11/18/img-slider/">http://www.sitec.cc/2015/11/18/img-slider/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/html/">html</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2015/11/20/netty-socket/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">netty5实现简单的socket服务器</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2015/11/12/python-0/">
+        <span class="next-text nav-default">python 练习</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">keeleys</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://www.sitec.cc/2015/11/18/img-slider/';
+        this.page.identifier = '2015/11/18/img-slider/';
+        this.page.title = '图片轮播nivo-slider插件';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//sitecc.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

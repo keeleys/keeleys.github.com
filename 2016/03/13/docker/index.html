@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="dockerr常用命令"/>
+
+
+
+
+  <meta name="keywords" content="docker常用命令" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="http://www.sitec.cc/">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.sitec.cc/2016/03/13/docker/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> docker学习一（常用命令） - http://www.sitec.cc/ </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">http://www.sitec.cc/</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">http://www.sitec.cc/</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          docker学习一（常用命令）
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-13
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/docker/">docker</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#官网"><span class="toc-text">官网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载linux"><span class="toc-text">下载linux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用软件"><span class="toc-text">常用软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx"><span class="toc-text">nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql"><span class="toc-text">mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jdk"><span class="toc-text">jdk</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker参数介绍"><span class="toc-text">docker参数介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker选项帮助"><span class="toc-text">docker选项帮助</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-run"><span class="toc-text">docker run</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dockerfile"><span class="toc-text">Dockerfile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><img src="http://img.linux.net.cn/data/attachment/album/201411/24/153029kpg1olikdiokidzd.png" alt="docker"></p>
+<h2 id="官网"><a href="#官网" class="headerlink" title="官网"></a>官网</h2><ul>
+<li><a href="https://www.docker.com" target="_blank" rel="noopener">https://www.docker.com</a></li>
+<li><a href="https://docs.docker.com/mac/" target="_blank" rel="noopener">安装指南 mac</a></li>
+<li><a href="https://docs.docker.com/linux/" target="_blank" rel="noopener">安装指南 linux</a></li>
+<li><a href="https://docs.docker.com/windows/" target="_blank" rel="noopener">安装指南 windows</a></li>
+<li>window,mac 需要安装 <a href="https://github.com/docker/toolbox" target="_blank" rel="noopener">docker tool</a></li>
+</ul>
+<a id="more"></a>
+<h2 id="下载linux"><a href="#下载linux" class="headerlink" title="下载linux"></a>下载linux</h2><ul>
+<li><p>查询需要下载的镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search centos</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载centos</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull blalor/centos</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行并挂载本地路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -v ~/Downloads:/usr/Downloads:ro 8d74077f3b19 /bin/bash</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="常用软件"><a href="#常用软件" class="headerlink" title="常用软件"></a>常用软件</h2><h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## 下载nginx</span><br><span class="line">docker pull daocloud.io/nginx</span><br><span class="line"></span><br><span class="line">// 挂载本地的硬盘并映射端口80到8080</span><br><span class="line">docker run  -v ~/Downloads/高校缴费V2.0/:/usr/share/nginx/html:ro -d -p 8080:80 daocloud.io/nginx</span><br></pre></td></tr></table></figure>
+<h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql</span><br><span class="line">//设置mysql的root密码为123456 并随机映射本机端口</span><br><span class="line">docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=123456 -d -P mysql:latest</span><br></pre></td></tr></table></figure>
+<h3 id="jdk"><a href="#jdk" class="headerlink" title="jdk"></a>jdk</h3><p>设置jdk环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">vi + /etc/profile</span><br><span class="line"></span><br><span class="line">JAVA_HOME=/usr/local/jdk1.7.0_79</span><br><span class="line">JRE_HOME=/usr/local/jdk1.7.0_79/jre</span><br><span class="line">PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin</span><br><span class="line">CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib</span><br><span class="line">export JAVA_HOME JRE_HOME PATH CLASSPATH</span><br><span class="line"></span><br><span class="line">source /etc/profile</span><br><span class="line">echo $PATH   //查看PATH值</span><br></pre></td></tr></table></figure></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li><p>docker images</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看正在运行的容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br><span class="line">docker ps -a为查看所有的容器，包括已经停止的。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除单个容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm &lt;容器名orID&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>停止、启动、杀死一个容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker stop &lt;容器名orID&gt;</span><br><span class="line">docker start &lt;容器名orID&gt;</span><br><span class="line">docker kill &lt;容器名orID&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一个容器连接到另一个容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -i -t --name sonar -d -link mmysql:db   tpires/sonar-server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>导入导出镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker save busybox-1 &gt; /home/save.tar</span><br><span class="line">docker load &lt; /home/save.tar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从container中拷贝文件出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker cp 4e9bc8d685f0:/usr/local .</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="docker参数介绍"><a href="#docker参数介绍" class="headerlink" title="docker参数介绍"></a>docker参数介绍</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker   # docker命令帮助</span><br><span class="line">Usage: docker [OPTIONS] COMMAND [arg...]</span><br><span class="line"> -H=[unix:///var/run/docker.sock]: tcp://host:port to bind/connect to or unix://path/to/socket to use</span><br><span class="line"></span><br><span class="line">A self-sufficient runtime for linux containers.</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">    attach    Attach to a running container                 # 当前shell下attach连接指定运行镜像</span><br><span class="line">    build     Build an image from a Dockerfile              # 通过Dockerfile定制镜像</span><br><span class="line">    commit    Create a new image from a container&apos;s changes # 提交当前容器为新的镜像</span><br><span class="line">    cp        Copy files/folders from the containers filesystem to the host path</span><br><span class="line">              # 从容器中拷贝指定文件或者目录到宿主机中</span><br><span class="line">    diff      Inspect changes on a container&apos;s filesystem   # 查看docker容器变化</span><br><span class="line">    events    Get real time events from the server          # 从docker服务获取容器实时事件</span><br><span class="line">    export    Stream the contents of a container as a tar archive   </span><br><span class="line">              # 导出容器的内容流作为一个tar归档文件[对应import]</span><br><span class="line">    history   Show the history of an image                  # 展示一个镜像形成历史</span><br><span class="line">    images    List images                                   # 列出系统当前镜像</span><br><span class="line">    import    Create a new filesystem image from the contents of a tarball  </span><br><span class="line">              # 从tar包中的内容创建一个新的文件系统映像[对应export]</span><br><span class="line">    info      Display system-wide information               # 显示系统相关信息</span><br><span class="line">    inspect   Return low-level information on a container   # 查看容器详细信息</span><br><span class="line">    kill      Kill a running container                      # kill指定docker容器</span><br><span class="line">    load      Load an image from a tar archive              # 从一个tar包中加载一个镜像[对应save]</span><br><span class="line">    login     Register or Login to the docker registry server   </span><br><span class="line">              # 注册或者登陆一个docker源服务器</span><br><span class="line">    logs      Fetch the logs of a container                 # 输出当前容器日志信息</span><br><span class="line">    port      Lookup the public-facing port which is NAT-ed to PRIVATE_PORT</span><br><span class="line">              # 查看映射端口对应的容器内部源端口</span><br><span class="line">    pause     Pause all processes within a container        # 暂停容器</span><br><span class="line">    ps        List containers                               # 列出容器列表</span><br><span class="line">    pull      Pull an image or a repository from the docker registry server</span><br><span class="line">              # 从docker镜像源服务器拉取指定镜像或者库镜像</span><br><span class="line">    push      Push an image or a repository to the docker registry server</span><br><span class="line">              # 推送指定镜像或者库镜像至docker源服务器</span><br><span class="line">    restart   Restart a running container                   # 重启运行的容器</span><br><span class="line">    rm        Remove one or more containers                 # 移除一个或者多个容器</span><br><span class="line">    rmi       Remove one or more images                 </span><br><span class="line">              # 移除一个或多个镜像[无容器使用该镜像才可删除，否则需删除相关容器才可继续或-f强制删除]</span><br><span class="line">    run       Run a command in a new container</span><br><span class="line">              # 在一个新的容器中运行一个命令</span><br><span class="line">    save      Save an image to a tar archive                # 保存一个镜像为一个tar包[对应load]</span><br><span class="line">    search    Search for an image in the docker index       # 在docker index中搜索镜像</span><br><span class="line">    start     Start a stopped containers                    # 启动容器</span><br><span class="line">    stop      Stop a running containers                     # 停止容器</span><br><span class="line">    tag       Tag an image into a repository                # 给源中镜像打标签</span><br><span class="line">    top       Lookup the running processes of a container   # 查看容器中运行的进程信息</span><br><span class="line">    unpause   Unpause a paused container                    # 取消暂停容器</span><br><span class="line">    version   Show the docker version information           # 查看docker版本号</span><br><span class="line">    wait      Block until a container stops, then print its exit code   </span><br><span class="line">              # 截取容器停止时的退出状态值</span><br></pre></td></tr></table></figure>
+<h2 id="docker选项帮助"><a href="#docker选项帮助" class="headerlink" title="docker选项帮助"></a>docker选项帮助</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker --help</span><br><span class="line">Usage of docker:</span><br><span class="line">  --api-enable-cors=false                Enable CORS headers in the remote API                      # 远程API中开启CORS头</span><br><span class="line">  -b, --bridge=&quot;&quot;                        Attach containers to a pre-existing network bridge         # 桥接网络</span><br><span class="line">                                           use &apos;none&apos; to disable container networking</span><br><span class="line">  --bip=&quot;&quot;                               Use this CIDR notation address for the network bridge&apos;s IP, not compatible with -b</span><br><span class="line">                                         # 和-b选项不兼容，具体没有测试过</span><br><span class="line">  -d, --daemon=false                     Enable daemon mode                                         # daemon模式</span><br><span class="line">  -D, --debug=false                      Enable debug mode                                          # debug模式</span><br><span class="line">  --dns=[]                               Force docker to use specific DNS servers                   # 强制docker使用指定dns服务器</span><br><span class="line">  --dns-search=[]                        Force Docker to use specific DNS search domains            # 强制docker使用指定dns搜索域</span><br><span class="line">  -e, --exec-driver=&quot;native&quot;             Force the docker runtime to use a specific exec driver     # 强制docker运行时使用指定执行驱动器</span><br><span class="line">  -G, --group=&quot;docker&quot;                   Group to assign the unix socket specified by -H when running in daemon mode</span><br><span class="line">                                           use &apos;&apos; (the empty string) to disable setting of a group</span><br><span class="line">  -g, --graph=&quot;/var/lib/docker&quot;          Path to use as the root of the docker runtime              # 容器运行的根目录路径</span><br><span class="line">  -H, --host=[]                          The socket(s) to bind to in daemon mode                    # daemon模式下docker指定绑定方式[tcp or 本地socket]</span><br><span class="line">                                           specified using one or more tcp://host:port, unix:///path/to/socket, fd://* or fd://socketfd.</span><br><span class="line">  --icc=true                             Enable inter-container communication                       # 跨容器通信</span><br><span class="line">  --ip=&quot;0.0.0.0&quot;                         Default IP address to use when binding container ports     # 指定监听地址，默认所有ip</span><br><span class="line">  --ip-forward=true                      Enable net.ipv4.ip_forward                                 # 开启转发</span><br><span class="line">  --iptables=true                        Enable Docker&apos;s addition of iptables rules                 # 添加对应iptables规则</span><br><span class="line">  --mtu=0                                Set the containers network MTU                             # 设置网络mtu</span><br><span class="line">                                           if no value is provided: default to the default route MTU or 1500 if no default route is available</span><br><span class="line">  -p, --pidfile=&quot;/var/run/docker.pid&quot;    Path to use for daemon PID file                            # 指定pid文件位置</span><br><span class="line">  -r, --restart=true                     Restart previously running containers                      # 重新启动以前运行的容器                     </span><br><span class="line">  -s, --storage-driver=&quot;&quot;                Force the docker runtime to use a specific storage driver  # 强制docker运行时使用指定存储驱动</span><br><span class="line">  --selinux-enabled=false                Enable selinux support                                     # 开启selinux支持</span><br><span class="line">  --storage-opt=[]                       Set storage driver options                                 # 设置存储驱动选项</span><br><span class="line">  --tls=false                            Use TLS; implied by tls-verify flags                       # 开启tls</span><br><span class="line">  --tlscacert=&quot;/root/.docker/ca.pem&quot;     Trust only remotes providing a certificate signed by the CA given here</span><br><span class="line">  --tlscert=&quot;/root/.docker/cert.pem&quot;     Path to TLS certificate file                               # tls证书文件位置</span><br><span class="line">  --tlskey=&quot;/root/.docker/key.pem&quot;       Path to TLS key file                                       # tls key文件位置</span><br><span class="line">  --tlsverify=false                      Use TLS and verify the remote (daemon: verify client, client: verify daemon) # 使用tls并确认远程控制主机</span><br><span class="line">  -v, --version=false                    Print version information and quit                         # 输出docker版本信息</span><br></pre></td></tr></table></figure>
+<h2 id="docker-run"><a href="#docker-run" class="headerlink" title="docker run"></a>docker run</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run </span><br><span class="line"></span><br><span class="line">Usage: docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</span><br><span class="line"></span><br><span class="line">Run a command in a new container</span><br><span class="line"></span><br><span class="line">  -a, --attach=[]            Attach to stdin, stdout or stderr.</span><br><span class="line">  -c, --cpu-shares=0         CPU shares (relative weight)                       # 设置cpu使用权重</span><br><span class="line">  --cidfile=&quot;&quot;               Write the container ID to the file                 # 把容器id写入到指定文件</span><br><span class="line">  --cpuset=&quot;&quot;                CPUs in which to allow execution (0-3, 0,1)        # cpu绑定</span><br><span class="line">  -d, --detach=false         Detached mode: Run container in the background, print new container id # 后台运行容器</span><br><span class="line">  --dns=[]                   Set custom dns servers                             # 设置dns</span><br><span class="line">  --dns-search=[]            Set custom dns search domains                      # 设置dns域搜索</span><br><span class="line">  -e, --env=[]               Set environment variables                          # 定义环境变量</span><br><span class="line">  --entrypoint=&quot;&quot;            Overwrite the default entrypoint of the image      # ？</span><br><span class="line">  --env-file=[]              Read in a line delimited file of ENV variables     # 从指定文件读取变量值</span><br><span class="line">  --expose=[]                Expose a port from the container without publishing it to your host    # 指定对外提供服务端口</span><br><span class="line">  -h, --hostname=&quot;&quot;          Container host name                                # 设置容器主机名</span><br><span class="line">  -i, --interactive=false    Keep stdin open even if not attached               # 保持标准输出开启即使没有attached</span><br><span class="line">  --link=[]                  Add link to another container (name:alias)         # 添加链接到另外一个容器[这个会专门章节讲解]</span><br><span class="line">  --lxc-conf=[]              (lxc exec-driver only) Add custom lxc options --lxc-conf=&quot;lxc.cgroup.cpuset.cpus = 0,1&quot;</span><br><span class="line">  -m, --memory=&quot;&quot;            Memory limit (format: &lt;number&gt;&lt;optional unit&gt;, where unit = b, k, m or g) # 内存限制</span><br><span class="line">  --name=&quot;&quot;                  Assign a name to the container                     # 设置容器名</span><br><span class="line">  --net=&quot;bridge&quot;             Set the Network mode for the container             # 设置容器网络模式</span><br><span class="line">                               &apos;bridge&apos;: creates a new network stack for the container on the docker bridge</span><br><span class="line">                               &apos;none&apos;: no networking for this container</span><br><span class="line">                               &apos;container:&lt;name|id&gt;&apos;: reuses another container network stack</span><br><span class="line">                               &apos;host&apos;: use the host network stack inside the container.  Note: the host mode gives the container full access to local system services such as D-bus and is therefore considered insecure.</span><br><span class="line">  -P, --publish-all=false    Publish all exposed ports to the host interfaces   # 自动映射容器对外提供服务的端口</span><br><span class="line">  -p, --publish=[]           Publish a container&apos;s port to the host             # 指定端口映射</span><br><span class="line">                               format: ip:hostPort:containerPort | ip::containerPort | hostPort:containerPort</span><br><span class="line">                               (use &apos;docker port&apos; to see the actual mapping)</span><br><span class="line">  --privileged=false         Give extended privileges to this container         # 提供更多的权限给容器</span><br><span class="line">  --rm=false                 Automatically remove the container when it exits (incompatible with -d) # 如果容器退出自动移除和-d选项冲突</span><br><span class="line">  --sig-proxy=true           Proxify received signals to the process (even in non-tty mode). SIGCHLD is not proxied. # ？</span><br><span class="line">  -t, --tty=false            Allocate a pseudo-tty                              # 分配伪终端</span><br><span class="line">  -u, --user=&quot;&quot;              Username or UID                                    # 指定运行容器的用户uid或者用户名</span><br><span class="line">  -v, --volume=[]            Bind mount a volume (e.g., from the host: -v /host:/container, from docker: -v /container)     </span><br><span class="line">                             # 挂载卷</span><br><span class="line">  --volumes-from=[]          Mount volumes from the specified container(s)      # 从指定容器挂载卷</span><br><span class="line">  -w, --workdir=&quot;&quot;           Working directory inside the container             # 指定容器工作目录</span><br></pre></td></tr></table></figure>
+<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">命令  参数  说明</span><br><span class="line">- 注释说明</span><br><span class="line">FROM  &lt;image&gt;[:&lt;tag&gt;] 从一个已有镜像创建，例如ubuntu:latest</span><br><span class="line">MAINTAINER  Author &lt;some-one@example.com&gt; 镜像作者名字，如Max Liu &lt;some-one@example.com&gt;</span><br><span class="line">RUN &lt;cmd&gt;或者[&apos;cmd1&apos;, &apos;cmd2&apos;…]  在镜像创建用的临时容器里执行单行命令</span><br><span class="line">ADD &lt;src&gt; &lt;dest&gt;  将本地的&lt;src&gt;添加到镜像容器中的&lt;dest&gt;位置</span><br><span class="line">VOLUME  &lt;path&gt;或者[&apos;/var&apos;, &apos;home&apos;]  将指定的路径挂载为数据卷</span><br><span class="line">EXPOSE  &lt;port&gt; [&lt;port&gt;...]  将指定的端口暴露给主机</span><br><span class="line">ENV &lt;key&gt; &lt;value&gt; 或者 &lt;key&gt; = &lt;value&gt;  指定环境变量值</span><br><span class="line">CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;]  容器启动时默认执行的命令。注意一个Dockerfile中只有最后一个CMD生效。</span><br><span class="line">ENTRYPOINT  [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]  容器的进入点</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://docs.daocloud.io/faq/what-is-docker" target="_blank" rel="noopener">http://docs.daocloud.io/faq/what-is-docker</a><br><a href="http://linuxwiki.github.io/Services/Docker.html" target="_blank" rel="noopener">http://linuxwiki.github.io/Services/Docker.html</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.sitec.cc">keeleys</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.sitec.cc/2016/03/13/docker/">http://www.sitec.cc/2016/03/13/docker/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/docker/">docker</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/03/19/mac-cron/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">mac 管理定时任务</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/02/02/shadowsocks/">
+        <span class="next-text nav-default">Ubuntu安装Shadowsocks</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">keeleys</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://www.sitec.cc/2016/03/13/docker/';
+        this.page.identifier = '2016/03/13/docker/';
+        this.page.title = 'docker学习一（常用命令）';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//sitecc.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

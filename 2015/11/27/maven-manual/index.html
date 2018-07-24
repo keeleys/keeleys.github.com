@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="maven\_manual"/>
+
+
+
+
+  <meta name="keywords" content="maven\_manual" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="http://www.sitec.cc/">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.sitec.cc/2015/11/27/maven-manual/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> maven 常用记录 - http://www.sitec.cc/ </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">http://www.sitec.cc/</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">http://www.sitec.cc/</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          maven 常用记录
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-11-27
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/使用手册/">使用手册</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载地址"><span class="toc-text">下载地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装方法"><span class="toc-text">安装方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建一个空项目"><span class="toc-text">创建一个空项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译"><span class="toc-text">编译</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pom-xml"><span class="toc-text">pom.xml</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#scope"><span class="toc-text">scope</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指定编译的编码"><span class="toc-text">指定编译的编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署到远程仓库"><span class="toc-text">部署到远程仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#setting文件位置"><span class="toc-text">setting文件位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用私服仓库"><span class="toc-text">使用私服仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署到中央仓库"><span class="toc-text">部署到中央仓库</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">http://maven.apache.org/download.cgi</a></p>
+<h3 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h3><p><a href="http://maven.apache.org/install.html" target="_blank" rel="noopener">http://maven.apache.org/install.html</a></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><a href="http://maven.apache.org/settings.html" target="_blank" rel="noopener">http://maven.apache.org/settings.html</a></p>
+<a id="more"></a>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="创建一个空项目"><a href="#创建一个空项目" class="headerlink" title="创建一个空项目"></a>创建一个空项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate -DgroupId=com.di.maven -DartifactId=hello-world -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</span><br></pre></td></tr></table></figure>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mvn clean 清空生成的文件</span><br><span class="line">mvn validate        验证工程是否正确，所有需要的资源是否可用</span><br><span class="line">mvn compile 编译源代码  </span><br><span class="line">mvn test 编译并测试。</span><br><span class="line">mvn verify 运行任何检查，验证包是否有效且达到质量标准</span><br><span class="line">mvn package 将已编译的源代码打包 (jar或者war)</span><br><span class="line">mvn install 把包安装在本地的repository中，可以被其他工程作为依赖来使用</span><br><span class="line">mvn deploy 在整合或者发布环境下执行，将最终版本的包拷贝到远程仓库，使得其他的开发者或者工程可以共享</span><br><span class="line">mvn package -DskipTests 跳过测试打包项目</span><br><span class="line">mvn dependency:tree -Ddetail=true</span><br></pre></td></tr></table></figure>
+<h2 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;project&gt; 根节点</span><br><span class="line">&lt;modelversion&gt; pom.xml 使用的对象模型版本</span><br><span class="line">&lt;groupId&gt; 创建项目的组织或团体的唯一 Id</span><br><span class="line">&lt;artifactId&gt; 项目唯一Id, 项目名</span><br><span class="line">&lt;packaging&gt; 打包扩展名(JAR、WAR、EAR)</span><br><span class="line">&lt;version&gt; 项目版本号</span><br><span class="line">&lt;name&gt; 显示名，用于生成文档</span><br><span class="line">&lt;url&gt; 组织站点，用于生成文档</span><br><span class="line">&lt;description&gt; 项目描述，用于生成文档</span><br><span class="line">&lt;dependency&gt;之&lt;scope&gt; 管理依赖部署</span><br></pre></td></tr></table></figure>
+<h3 id="scope"><a href="#scope" class="headerlink" title="scope"></a>scope</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">compile 缺省值，用于所有阶段，随项目一起发布</span><br><span class="line">provided 期望JDK、容器或使用者提供此依赖。如servlet.jar</span><br><span class="line">runtime 只在运行时使用</span><br><span class="line">test 只在测试时使用，不随项目发布</span><br><span class="line">system 需显式提供本地jar，不在代码仓库中查找</span><br></pre></td></tr></table></figure>
+<h2 id="指定编译的编码"><a href="#指定编译的编码" class="headerlink" title="指定编译的编码"></a>指定编译的编码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;2.4&lt;/version&gt;</span><br><span class="line">	&lt;configuration&gt;</span><br><span class="line">	    &lt;encoding&gt;UTF-8&lt;/encoding&gt;</span><br><span class="line">	&lt;/configuration&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br><span class="line">&lt;plugin&gt;</span><br><span class="line">	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;3.1&lt;/version&gt;</span><br><span class="line">	&lt;configuration&gt;</span><br><span class="line">	    &lt;source&gt;1.6&lt;/source&gt;</span><br><span class="line">	    &lt;target&gt;1.6&lt;/target&gt;</span><br><span class="line">	    &lt;encoding&gt;utf8&lt;/encoding&gt;</span><br><span class="line">	&lt;/configuration&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="部署到远程仓库"><a href="#部署到远程仓库" class="headerlink" title="部署到远程仓库"></a>部署到远程仓库</h2><h3 id="setting文件位置"><a href="#setting文件位置" class="headerlink" title="setting文件位置"></a>setting文件位置</h3><p>settings.xml 的文件可能存在于这2个位子<br>Maven 的安装目录: $M2_HOME/conf/settings.xml<br>操作系统用户目录: ${user.home}/.m2/settings.xml</p>
+<p>pom添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;distributionManagement&gt;</span><br><span class="line">	&lt;repository&gt;</span><br><span class="line">	    &lt;id&gt;releases&lt;/id&gt;</span><br><span class="line">	    &lt;url&gt;https://test.91umall.com:1443/nexus/content/repositories/releases/&lt;/url&gt;</span><br><span class="line">	&lt;/repository&gt;</span><br><span class="line">	&lt;snapshotRepository&gt;</span><br><span class="line">	    &lt;id&gt;snapshots&lt;/id&gt;</span><br><span class="line">	    &lt;url&gt;https://test.91umall.com:1443/nexus/content/repositories/snapshots/&lt;/url&gt;</span><br><span class="line">	&lt;/snapshotRepository&gt;</span><br><span class="line">&lt;/distributionManagement&gt;</span><br></pre></td></tr></table></figure></p>
+<p>setting添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;servers&gt;</span><br><span class="line">	&lt;server&gt;</span><br><span class="line">	    &lt;id&gt;releases&lt;/id&gt;</span><br><span class="line">	    &lt;username&gt;admin&lt;/username&gt;</span><br><span class="line">	    &lt;password&gt;xxxx&lt;/password&gt;</span><br><span class="line">	&lt;/server&gt;</span><br><span class="line">	&lt;server&gt;</span><br><span class="line">	    &lt;id&gt;snapshots&lt;/id&gt;</span><br><span class="line">	    &lt;username&gt;admin&lt;/username&gt;</span><br><span class="line">	    &lt;password&gt;xxxx&lt;/password&gt;</span><br><span class="line">	&lt;/server&gt;</span><br><span class="line">&lt;/servers&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用私服仓库"><a href="#使用私服仓库" class="headerlink" title="使用私服仓库"></a>使用私服仓库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">&lt;profile&gt;</span><br><span class="line">  &lt;id&gt;uxun&lt;/id&gt;</span><br><span class="line">  &lt;repositories&gt;</span><br><span class="line">      &lt;repository&gt;</span><br><span class="line">          &lt;id&gt;uxun&lt;/id&gt;</span><br><span class="line">          &lt;url&gt;https://test.91umall.com:1443/nexus/content/groups/public/&lt;/url&gt;</span><br><span class="line">          &lt;layout&gt;default&lt;/layout&gt;</span><br><span class="line">          &lt;releases&gt;</span><br><span class="line">            &lt;enabled&gt;true&lt;/enabled&gt;</span><br><span class="line">          &lt;/releases&gt;</span><br><span class="line">          &lt;snapshots&gt;</span><br><span class="line">            &lt;enabled&gt;true&lt;/enabled&gt;</span><br><span class="line">          &lt;/snapshots&gt;</span><br><span class="line">      &lt;/repository&gt;</span><br><span class="line">  &lt;/repositories&gt;</span><br><span class="line">&lt;/profile&gt;</span><br><span class="line"> &lt;/profiles&gt;</span><br><span class="line"></span><br><span class="line"> &lt;activeProfiles&gt;  </span><br><span class="line">   &lt;activeProfile&gt;uxun&lt;/activeProfile&gt;</span><br><span class="line"> &lt;/activeProfiles&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="部署到中央仓库"><a href="#部署到中央仓库" class="headerlink" title="部署到中央仓库"></a>部署到中央仓库</h2><p><a href="http://www.ttianjun.com/2015/11/10/centermaven/" target="_blank" rel="noopener">http://www.ttianjun.com/2015/11/10/centermaven/</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.sitec.cc">keeleys</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.sitec.cc/2015/11/27/maven-manual/">http://www.sitec.cc/2015/11/27/maven-manual/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/maven/">maven</a>
+            
+              <a href="/tags/使用手册/">使用手册</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2015/12/15/m1ic/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">非接触储存卡M1卡分析</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2015/11/20/netty-socket/">
+        <span class="next-text nav-default">netty5实现简单的socket服务器</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">keeleys</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://www.sitec.cc/2015/11/27/maven-manual/';
+        this.page.identifier = '2015/11/27/maven-manual/';
+        this.page.title = 'maven 常用记录';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//sitecc.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

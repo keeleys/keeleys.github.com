@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="ubuntu 环境配置"/>
+
+
+
+
+  <meta name="keywords" content="linux, http://www.sitec.cc/" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="http://www.sitec.cc/">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.sitec.cc/2016/04/01/ubuntu-config/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> ubuntu 环境配置 - http://www.sitec.cc/ </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">http://www.sitec.cc/</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">http://www.sitec.cc/</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          ubuntu 环境配置
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-04-01
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python环境"><span class="toc-text">python环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pip"><span class="toc-text">pip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编码设置"><span class="toc-text">编码设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lxml"><span class="toc-text">lxml</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux-定时任务"><span class="toc-text">linux 定时任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些应用"><span class="toc-text">一些应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql"><span class="toc-text">mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git"><span class="toc-text">git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装zsh-一种-Shell-内核，替换bash"><span class="toc-text">安装zsh(一种 Shell 内核，替换bash)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些配置"><span class="toc-text">一些配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql配置文件"><span class="toc-text">mysql配置文件</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="python环境"><a href="#python环境" class="headerlink" title="python环境"></a>python环境</h2><h3 id="pip"><a href="#pip" class="headerlink" title="pip"></a>pip</h3><p>第一步是安装pip,后面很多软件需要用pip安装，有它比较方便<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">python get-pip.py</span><br></pre></td></tr></table></figure></p>
+<h3 id="编码设置"><a href="#编码设置" class="headerlink" title="编码设置"></a>编码设置</h3><p>有可能会遇到编码错误，可以运行<code>locales</code>查看你的默认编码 安装缺失的语言包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># LANG=en_US.UTF-8</span></span><br><span class="line">apt-get install language-pack-en-base</span><br><span class="line"><span class="built_in">export</span> LC_CTYPE=<span class="string">"en_US.UTF-8"</span></span><br><span class="line">dpkg-reconfigure locales</span><br><span class="line"></span><br><span class="line"><span class="comment"># LANG=zh_CN.UTF-8</span></span><br><span class="line">apt-get install language-pack-zh-hans</span><br><span class="line">dpkg-reconfigure locales</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h3 id="lxml"><a href="#lxml" class="headerlink" title="lxml"></a>lxml</h3><p>安装lxml,很多包都依赖它。优先安装它,因为它安装过程非常占用内存<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">apt-get install libxml2-dev libxslt1-dev python-dev</span><br><span class="line"><span class="comment"># 大内存方案</span></span><br><span class="line">pip install lxml</span><br><span class="line"><span class="comment"># 小内存方案 小内存运行上面那行基本不成功。。</span></span><br><span class="line">apt-get install python-lxml</span><br></pre></td></tr></table></figure></p>
+<h2 id="linux-定时任务"><a href="#linux-定时任务" class="headerlink" title="linux 定时任务"></a>linux 定时任务</h2><blockquote>
+<p>需要注意的是 定时任务会根据当前用户的默认目录<code>~</code>开始执行脚本或者任务的，所以如果脚本有上下文环境的，进<code>~</code>目录先测试运行一次</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用cron表达式控制任务的执行周期</span></span><br><span class="line">crontab -e</span><br><span class="line"><span class="comment"># For example, you can run a backup of all your user accounts</span></span><br><span class="line"><span class="comment"># at 5 a.m every week with:</span></span><br><span class="line"><span class="comment"># 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看cron服务的运行状态</span></span><br><span class="line">ps aux | grep cron <span class="comment"># 查看cron进程</span></span><br><span class="line">service cron status <span class="comment"># 查看服务状态</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动和关闭</span></span><br><span class="line">service cron restart <span class="comment"># 重启</span></span><br><span class="line">service cron reload <span class="comment">#重新加载配置</span></span><br><span class="line">service cron stop <span class="comment">#停止定时任务服务</span></span><br></pre></td></tr></table></figure>
+<h2 id="一些应用"><a href="#一些应用" class="headerlink" title="一些应用"></a>一些应用</h2><h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><p>安装mysql<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ubuntu的apt-get很方便，当然也可以用yum或者在官网下源包</span></span><br><span class="line">apt-get install mysql-server</span><br><span class="line"><span class="comment">#如果需要安装python</span></span><br><span class="line">apt-get install libmysqld-dev </span><br><span class="line"><span class="comment"># 导入</span></span><br><span class="line"><span class="built_in">source</span> /root/data/git/funny2/doc/funny.sql</span><br></pre></td></tr></table></figure></p>
+<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这个没啥好说的 </span></span><br><span class="line">apt-get install git</span><br><span class="line"><span class="comment"># 配置ssh,运行下面这个，然后一路按`回车键`，不设置密码</span></span><br><span class="line">ssh-keygen -t rsa -b 4096 -C <span class="string">"your_email@example.com"</span></span><br><span class="line"><span class="comment"># 最后在你的目录下面会生出密钥 `~/.ssh/id_rsa.pub`</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装zsh-一种-Shell-内核，替换bash"><a href="#安装zsh-一种-Shell-内核，替换bash" class="headerlink" title="安装zsh(一种 Shell 内核，替换bash)"></a>安装zsh(一种 Shell 内核，替换bash)</h3><p><a href="http://ohmyz.sh" target="_blank" rel="noopener">http://ohmyz.sh</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get zsh</span><br><span class="line"><span class="comment"># 在安装oh-my-zsh</span></span><br><span class="line">sh -c <span class="string">"<span class="variable">$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></table></figure></p>
+<p>autojump<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 autojump 它能自动找到最常访问的目录，补全目录</span></span><br><span class="line">apt-get install autojump</span><br><span class="line"><span class="comment"># 将autojump添加到zsh插件里面去</span></span><br><span class="line">vi ~/.zshrc</span><br><span class="line"><span class="comment"># 修改 plugins </span></span><br><span class="line">plugins=(git autojump github)</span><br></pre></td></tr></table></figure></p>
+<p>autojump 使用方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">j fun  <span class="comment"># j是简写，fun是以前cd过的目录的一部分</span></span><br><span class="line">/root/data/git/funny2</span><br></pre></td></tr></table></figure></p>
+<h2 id="一些配置"><a href="#一些配置" class="headerlink" title="一些配置"></a>一些配置</h2><h3 id="mysql配置文件"><a href="#mysql配置文件" class="headerlink" title="mysql配置文件"></a>mysql配置文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/mysql/my.cnf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># The MySQL database server configuration file.</span><br><span class="line">#</span><br><span class="line"># You can copy this to one of:</span><br><span class="line"># - &quot;/etc/mysql/my.cnf&quot; to set global options,</span><br><span class="line"># - &quot;~/.my.cnf&quot; to set user-specific options.</span><br><span class="line">#</span><br><span class="line"># One can use all long options that the program supports.</span><br><span class="line"># Run program with --help to get a list of available options and with</span><br><span class="line"># --print-defaults to see which it would actually understand and use.</span><br><span class="line">#</span><br><span class="line"># For explanations see</span><br><span class="line"># http://dev.mysql.com/doc/mysql/en/server-system-variables.html</span><br><span class="line"></span><br><span class="line"># This will be passed to all mysql clients</span><br><span class="line"># It has been reported that passwords should be enclosed with ticks/quotes</span><br><span class="line"># escpecially if they contain &quot;#&quot; chars...</span><br><span class="line"># Remember to edit /etc/mysql/debian.cnf when changing the socket location.</span><br><span class="line">[client]</span><br><span class="line">port    = 3306</span><br><span class="line">socket    = /var/run/mysqld/mysqld.sock</span><br><span class="line"></span><br><span class="line"># Here is entries for some specific programs</span><br><span class="line"># The following values assume you have at least 32M ram</span><br><span class="line"></span><br><span class="line"># This was formally known as [safe_mysqld]. Both versions are currently parsed.</span><br><span class="line">[mysqld_safe]</span><br><span class="line">socket    = /var/run/mysqld/mysqld.sock</span><br><span class="line">nice    = 0</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">#</span><br><span class="line"># * Basic Settings</span><br><span class="line">#</span><br><span class="line">user    = mysql</span><br><span class="line">pid-file  = /var/run/mysqld/mysqld.pid</span><br><span class="line">socket    = /var/run/mysqld/mysqld.sock</span><br><span class="line">port    = 3306</span><br><span class="line">basedir   = /usr</span><br><span class="line">datadir   = /var/lib/mysql</span><br><span class="line">tmpdir    = /tmp</span><br><span class="line">lc-messages-dir = /usr/share/mysql</span><br><span class="line">skip-external-locking</span><br><span class="line">#</span><br><span class="line"># Instead of skip-networking the default is now to listen only on</span><br><span class="line"># localhost which is more compatible and is not less secure.</span><br><span class="line">bind-address    = 127.0.0.1</span><br><span class="line">#</span><br><span class="line"># * Fine Tuning</span><br><span class="line">#</span><br><span class="line">key_buffer    = 16M</span><br><span class="line">max_allowed_packet  = 16M</span><br><span class="line">thread_stack    = 192K</span><br><span class="line">thread_cache_size       = 8</span><br><span class="line"># This replaces the startup script and checks MyISAM tables if needed</span><br><span class="line"># the first time they are touched</span><br><span class="line">myisam-recover         = BACKUP</span><br><span class="line">#max_connections        = 100</span><br><span class="line">#table_cache            = 64</span><br><span class="line">#thread_concurrency     = 10</span><br><span class="line">#</span><br><span class="line"># * Query Cache Configuration</span><br><span class="line">#</span><br><span class="line">query_cache_limit = 1M</span><br><span class="line">query_cache_size        = 16M</span><br><span class="line">#</span><br><span class="line"># * Logging and Replication</span><br><span class="line">#</span><br><span class="line"># Both location gets rotated by the cronjob.</span><br><span class="line"># Be aware that this log type is a performance killer.</span><br><span class="line"># As of 5.1 you can enable the log at runtime!</span><br><span class="line">#general_log_file        = /var/log/mysql/mysql.log</span><br><span class="line">#general_log             = 1</span><br><span class="line">#</span><br><span class="line"># Error log - should be very few entries.</span><br><span class="line">#</span><br><span class="line">log_error = /var/log/mysql/error.log</span><br><span class="line">#</span><br><span class="line"># Here you can see queries with especially long duration</span><br><span class="line">#log_slow_queries = /var/log/mysql/mysql-slow.log</span><br><span class="line">#long_query_time = 2</span><br><span class="line">#log-queries-not-using-indexes</span><br><span class="line">#</span><br><span class="line"># The following can be used as easy to replay backup logs or for replication.</span><br><span class="line"># note: if you are setting up a replication slave, see README.Debian about</span><br><span class="line">#       other settings you may need to change.</span><br><span class="line">#server-id    = 1</span><br><span class="line">#log_bin      = /var/log/mysql/mysql-bin.log</span><br><span class="line">expire_logs_days  = 10</span><br><span class="line">max_binlog_size         = 100M</span><br><span class="line">#binlog_do_db   = include_database_name</span><br><span class="line">#binlog_ignore_db = include_database_name</span><br><span class="line">#</span><br><span class="line"># * InnoDB</span><br><span class="line">#</span><br><span class="line"># InnoDB is enabled by default with a 10MB datafile in /var/lib/mysql/.</span><br><span class="line"># Read the manual for more InnoDB related options. There are many!</span><br><span class="line">#</span><br><span class="line"># * Security Features</span><br><span class="line">#</span><br><span class="line"># Read the manual, too, if you want chroot!</span><br><span class="line"># chroot = /var/lib/mysql/</span><br><span class="line">#</span><br><span class="line"># For generating SSL certificates I recommend the OpenSSL GUI &quot;tinyca&quot;.</span><br><span class="line">#</span><br><span class="line"># ssl-ca=/etc/mysql/cacert.pem</span><br><span class="line"># ssl-cert=/etc/mysql/server-cert.pem</span><br><span class="line"># ssl-key=/etc/mysql/server-key.pem</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[mysqldump]</span><br><span class="line">quick</span><br><span class="line">quote-names</span><br><span class="line">max_allowed_packet  = 16M</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">#no-auto-rehash # faster start of mysql but no tab completition</span><br><span class="line"></span><br><span class="line">[isamchk]</span><br><span class="line">key_buffer    = 16M</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># * IMPORTANT: Additional settings that can override those from this file!</span><br><span class="line">#   The files must end with &apos;.cnf&apos;, otherwise they&apos;ll be ignored.</span><br><span class="line">#</span><br><span class="line">!includedir /etc/mysql/conf.d/</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.sitec.cc">keeleys</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.sitec.cc/2016/04/01/ubuntu-config/">http://www.sitec.cc/2016/04/01/ubuntu-config/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/linux/">linux</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/05/17/php-docker/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">docker 运行php</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/03/19/mac-cron/">
+        <span class="next-text nav-default">mac 管理定时任务</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">keeleys</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://www.sitec.cc/2016/04/01/ubuntu-config/';
+        this.page.identifier = '2016/04/01/ubuntu-config/';
+        this.page.title = 'ubuntu 环境配置';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//sitecc.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

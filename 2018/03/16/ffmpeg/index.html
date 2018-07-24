@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="音视频开发相关的一些东西"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="http://www.sitec.cc/">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.sitec.cc/2018/03/16/ffmpeg/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 音视频开发相关的一些东西 - http://www.sitec.cc/ </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">http://www.sitec.cc/</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">http://www.sitec.cc/</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          音视频开发相关的一些东西
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-03-16
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#视频转换ffmpeg"><span class="toc-text">视频转换ffmpeg</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#改变分辨率"><span class="toc-text">改变分辨率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水印"><span class="toc-text">水印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#旋转"><span class="toc-text">旋转</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查询旋转"><span class="toc-text">查询旋转</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#旋转-1"><span class="toc-text">旋转</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#编码旋转"><span class="toc-text">编码旋转</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#不编码旋转"><span class="toc-text">不编码旋转</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="视频转换ffmpeg"><a href="#视频转换ffmpeg" class="headerlink" title="视频转换ffmpeg"></a>视频转换ffmpeg</h2><h3 id="改变分辨率"><a href="#改变分辨率" class="headerlink" title="改变分辨率"></a>改变分辨率</h3><ul>
+<li>ntsc 720x480</li>
+<li>hd720 1280x720</li>
+<li>hd1080 1920x1080</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -y -i 7minutes_trans_480.mp4 -s 320:240 -c:a copy 7minutes_240.mp4</span><br><span class="line"></span><br><span class="line">ffmpeg -i 7minutes_trans_480.mp4 -vf scale=320:240 -c:a copy 7minutes_240.mp4</span><br></pre></td></tr></table></figure>
+<h3 id="水印"><a href="#水印" class="headerlink" title="水印"></a>水印</h3><ul>
+<li>左上角 overlay参数为 overlay=0:0</li>
+<li>右上角为 overlay= main_w-overlay_w:0</li>
+<li>右下角为 overlay= main_w-overlay_w:main_h-overlay_h</li>
+<li>左下角为 overlay=0: main_h-overlay_h</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i demo.avi -i watermark.png -filter_complex &quot;overlay=main_w-overlay_w-10:10&quot; -y keeley.mp4</span><br></pre></td></tr></table></figure>
+<h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3><h4 id="查询旋转"><a href="#查询旋转" class="headerlink" title="查询旋转"></a>查询旋转</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i IMG_1821.MOV 2&gt;&amp;1 | grep rotate</span><br></pre></td></tr></table></figure>
+<h4 id="旋转-1"><a href="#旋转-1" class="headerlink" title="旋转"></a>旋转</h4><h5 id="编码旋转"><a href="#编码旋转" class="headerlink" title="编码旋转"></a>编码旋转</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">rem For the transpose parameter you can pass:</span><br><span class="line"></span><br><span class="line">rem 0 = 90逆时针并且垂直翻转(default)</span><br><span class="line">rem 1 = 90顺时针</span><br><span class="line">rem 2 = 90度逆时针</span><br><span class="line">rem 3 = 90顺时针并且垂直翻转</span><br><span class="line"></span><br><span class="line">rem To rotate 180 degrees, instead use &quot;transpose=2,transpose=2&quot;</span><br><span class="line"></span><br><span class="line">rem Using -codec:a copy will simply copy the audio instead of reencoding it.</span><br><span class="line"></span><br><span class="line">ffmpeg -i in.mp4 -vf &quot;transpose=1&quot; -codec:a copy out.mp4</span><br></pre></td></tr></table></figure>
+<h5 id="不编码旋转"><a href="#不编码旋转" class="headerlink" title="不编码旋转"></a>不编码旋转</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i IMG_1821.MOV -metadata:s:v rotate=&quot;0&quot; -codec copy output.mp4</span><br></pre></td></tr></table></figure>
+<p><a href="http://einverne.github.io/post/2015/12/ffmpeg-first.html" target="_blank" rel="noopener">http://einverne.github.io/post/2015/12/ffmpeg-first.html</a><br><a href="https://lars.st0ne.at/blog/html5+video+in+IE11+-+size+does+matter" target="_blank" rel="noopener">https://lars.st0ne.at/blog/html5+video+in+IE11+-+size+does+matter</a><br><a href="https://trac.ffmpeg.org/wiki/Encode/H.264" target="_blank" rel="noopener">https://trac.ffmpeg.org/wiki/Encode/H.264</a><br><a href="http://www.cnblogs.com/tinywan/p/6404411.html" target="_blank" rel="noopener">http://www.cnblogs.com/tinywan/p/6404411.html</a><br><a href="http://www.cnblogs.com/tinywan/p/7877738.html" target="_blank" rel="noopener">http://www.cnblogs.com/tinywan/p/7877738.html</a><br><a href="http://blog.csdn.net/leixiaohua1020/article/category/1360795" target="_blank" rel="noopener">http://blog.csdn.net/leixiaohua1020/article/category/1360795</a><br><a href="https://www.jianshu.com/p/053665062f22" target="_blank" rel="noopener">https://www.jianshu.com/p/053665062f22</a><br><a href="https://support.google.com/youtube/answer/2853702?hl=zh-Hans" target="_blank" rel="noopener">https://support.google.com/youtube/answer/2853702?hl=zh-Hans</a><br><code>`</code></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.sitec.cc">keeleys</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.sitec.cc/2018/03/16/ffmpeg/">http://www.sitec.cc/2018/03/16/ffmpeg/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/07/24/mysql-procedure/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">MySQL存储过程笔记</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/03/16/oss-alipay/">
+        <span class="next-text nav-default">阿里云oss上传文件和文件夹</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">keeleys</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://www.sitec.cc/2018/03/16/ffmpeg/';
+        this.page.identifier = '2018/03/16/ffmpeg/';
+        this.page.title = '音视频开发相关的一些东西';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//sitecc.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

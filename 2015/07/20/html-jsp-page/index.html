@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="做一个jsp自定义tag的bootstrap3公共分页"/>
+
+
+
+
+  <meta name="keywords" content="html, jsp, bootcss, http://www.sitec.cc/" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="http://www.sitec.cc/">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.sitec.cc/2015/07/20/html-jsp-page/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 做一个jsp自定义tag的bootstrap3公共分页 - http://www.sitec.cc/ </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">http://www.sitec.cc/</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">http://www.sitec.cc/</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          做一个jsp自定义tag的bootstrap3公共分页
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-07-20
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/html/">html</a>
+            
+              <a href="/categories/html/jsp/">jsp</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#预览"><span class="toc-text">预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#想法"><span class="toc-text">想法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义tag"><span class="toc-text">自定义tag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#page-tld文件"><span class="toc-text">page.tld文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Action层"><span class="toc-text">Action层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#html层"><span class="toc-text">html层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#头部引用"><span class="toc-text">头部引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#这个是tag里面写的需要调用的js方法-写到一个公共引用的地方"><span class="toc-text">这个是tag里面写的需要调用的js方法,写到一个公共引用的地方</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询form"><span class="toc-text">查询form</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在需要分页的地方调用"><span class="toc-text">在需要分页的地方调用</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><p><img src="https://dn-tianjun.qbox.me/ttianjunQQ截图20150720135230.png" alt="分页"></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>本来用模版分页更优雅的，但项目很多同事不熟悉，只好先做个jsp版本的。<br>方案就是写一个servlet的tag的分页tag实现，根据tag里面的参数拼凑html代码。<br>有几个关键参数，当前页，总页数，以及跳转链接<br>tag中获取当前页和总页数是从request中获取分页bean来获得的，有些耦合分页bean,但好处是前端分页标签可以不用传分页参数。<br>跳转链接这个实现，依赖前端的查询from，因为业务上，有分页的基本上都会有条件查询，所以直接用form提交了，点击分页跳转的时候会在form中插入当前页的数据到隐藏域供后端查询。</p>
+<a id="more"></a>
+<h2 id="自定义tag"><a href="#自定义tag" class="headerlink" title="自定义tag"></a>自定义tag</h2><ul>
+<li>继承<code>javax.servlet.jsp.tagext.Tag</code></li>
+<li>实现方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PageTag</span> <span class="keyword">implements</span> <span class="title">Tag</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> PageContext pageContext;</span><br><span class="line">	 <span class="comment">//当前页</span></span><br><span class="line">    <span class="keyword">private</span> Integer pageNum;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//总页数</span></span><br><span class="line">    <span class="keyword">private</span> Integer pages;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> String seachForm;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> String paramEncoding = <span class="string">"UTF-8"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * page bean的属性名</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String pageBeanName;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getPageBeanName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> pageBeanName;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPageBeanName</span><span class="params">(String pageBeanName)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.pageBeanName = pageBeanName;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">getPageNum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> pageNum;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPageNum</span><span class="params">(Integer pageNum)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.pageNum = pageNum;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">getPages</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> pages;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPages</span><span class="params">(Integer pages)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.pages = pages;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getSeachForm</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> seachForm;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSeachForm</span><span class="params">(String seachForm)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.seachForm = seachForm;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getParamEncoding</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> paramEncoding;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setParamEncoding</span><span class="params">(String paramEncoding)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.paramEncoding = paramEncoding;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPageContext</span><span class="params">(PageContext pc)</span> </span>&#123;</span><br><span class="line">		pageContext = pc;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setParent</span><span class="params">(Tag t)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Tag <span class="title">getParent</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doStartTag</span><span class="params">()</span> <span class="keyword">throws</span> JspException </span>&#123;<span class="comment">//标签调用前执行的方法</span></span><br><span class="line">		<span class="keyword">if</span>(pageBeanName==<span class="keyword">null</span>)</span><br><span class="line">			pageBeanName=<span class="string">"pagination"</span>;</span><br><span class="line">		</span><br><span class="line">		Pagination pagination=(Pagination) pageContext.getRequest().getAttribute(pageBeanName);</span><br><span class="line">		<span class="keyword">if</span>(pagination!=<span class="keyword">null</span>)&#123;</span><br><span class="line">				pageNum = pagination.getPageNum();<span class="comment">//当前页数</span></span><br><span class="line">				pages = pagination.getTotalPage();<span class="comment">//总页数</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doEndTag</span><span class="params">()</span> <span class="keyword">throws</span> JspException </span>&#123;</span><br><span class="line">		JspWriter out = pageContext.getOut();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			out.write(buildPage());</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">			 <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> String <span class="title">buildPage</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(pages==<span class="number">1</span>)&#123;<span class="comment">//如果只有一页 那么不显示分页</span></span><br><span class="line">			<span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> start=<span class="number">0</span>,end=<span class="number">10</span>;</span><br><span class="line">		 <span class="keyword">if</span>(pageNum&gt;=<span class="number">10</span>||(pageNum&gt;<span class="number">5</span>&amp;&amp;pages&gt;<span class="number">10</span>))         </span><br><span class="line">		        start=pageNum-<span class="number">5</span>;</span><br><span class="line">		 <span class="keyword">if</span>(pages&gt;pageNum+<span class="number">5</span>)</span><br><span class="line">	            end=pageNum+<span class="number">5</span>;</span><br><span class="line">	        <span class="keyword">else</span></span><br><span class="line">	            end=pages;</span><br><span class="line">		 </span><br><span class="line">		StringBuffer sb =<span class="keyword">new</span> StringBuffer();</span><br><span class="line">		sb.append(<span class="string">"&lt;nav class=\"pull-right pull-right-1\"&gt;"</span>);</span><br><span class="line">		sb.append(<span class="string">"&lt;ul class=\"pagination\"&gt;"</span>);</span><br><span class="line">		<span class="keyword">if</span>(pageNum&gt;<span class="number">1</span>)</span><br><span class="line">			sb.append(<span class="string">"&lt;li class=\"previous\"&gt;&lt;a href=\"javascript:void(0)\" onclick="</span>+getPageMethod(pageNum-<span class="number">1</span>)+<span class="string">"&gt;上一页&lt;/a&gt;&lt;/li&gt;"</span>);</span><br><span class="line">		<span class="keyword">if</span>(start&gt;<span class="number">0</span>)</span><br><span class="line">			sb.append(<span class="string">"&lt;li class='nomal'  &gt;&lt;a href='javascript:void(0)' onclick="</span>+getPageMethod(<span class="number">1</span>)+<span class="string">" &gt;"</span>+<span class="number">1</span>+<span class="string">"&lt;/a&gt;&lt;/li&gt;"</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;end;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>((i+<span class="number">1</span>)==pageNum)</span><br><span class="line">				sb.append(<span class="string">"&lt;li class='active'&gt;&lt;a href='javascript:void(0)' onclick="</span>+getPageMethod(i+<span class="number">1</span>)+<span class="string">" &gt;"</span>+(i+<span class="number">1</span>)+<span class="string">"&lt;/a&gt;&lt;/li&gt;"</span>);</span><br><span class="line">	        <span class="keyword">else</span></span><br><span class="line">	        	sb.append(<span class="string">"&lt;li class='nomal'&gt;&lt;a href='javascript:void(0)' onclick="</span>+getPageMethod(i+<span class="number">1</span>)+<span class="string">"&gt;"</span>+(i+<span class="number">1</span>)+<span class="string">"&lt;/a&gt;&lt;/li&gt;"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(pages&gt;<span class="number">10</span>&amp;&amp;pageNum&lt;pages-<span class="number">4</span>)</span><br><span class="line">			sb.append(<span class="string">"&lt;li class='nomal'&gt;&lt;a href='javascript:void(0)' onclick="</span>+getPageMethod(pages)+<span class="string">"&gt;"</span>+pages+<span class="string">"&lt;/a&gt;&lt;/li&gt;"</span>);</span><br><span class="line">		<span class="keyword">if</span>(pageNum!=pages&amp;&amp;pages!=<span class="number">0</span>)</span><br><span class="line">			sb.append(<span class="string">"&lt;li class=\"next\"&gt;&lt;a href=\"javascript:void(0)\" onclick="</span>+getPageMethod(pageNum+<span class="number">1</span>)+<span class="string">"&gt;下一页&lt;/a&gt;&lt;/li&gt;"</span>);</span><br><span class="line">		sb.append(<span class="string">"&lt;/ul&gt;"</span>);</span><br><span class="line">		sb.append(<span class="string">"&lt;/nav&gt;"</span>);</span><br><span class="line">		<span class="keyword">return</span> sb.toString();</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> String  <span class="title">getPageMethod</span><span class="params">(<span class="keyword">int</span> pageNum)</span></span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="string">"\"pageJunmp('"</span>+seachForm+<span class="string">"',"</span>+pageNum+<span class="string">",'"</span>+pageBeanName+<span class="string">"')\""</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="page-tld文件"><a href="#page-tld文件" class="headerlink" title="page.tld文件"></a>page.tld文件</h2><p>在webapp/WEB-INF/tld下面新增page.tld，定义标签描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">taglib</span> <span class="attr">version</span>=<span class="string">"2.0"</span> <span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>bootcss3 分页<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tlib-version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">tlib-version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">short-name</span>&gt;</span>page<span class="tag">&lt;/<span class="name">short-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uri</span>&gt;</span>http://xxx.com/tag/page<span class="tag">&lt;/<span class="name">uri</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tag</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>pager<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tag-class</span>&gt;</span>com.xxx.xxx.core.PageTag<span class="tag">&lt;/<span class="name">tag-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">body-content</span>&gt;</span>empty<span class="tag">&lt;/<span class="name">body-content</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attribute</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>seachForm<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">required</span>&gt;</span>true<span class="tag">&lt;/<span class="name">required</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">rtexprvalue</span>&gt;</span>true<span class="tag">&lt;/<span class="name">rtexprvalue</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attribute</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>pageBeanName<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">required</span>&gt;</span>false<span class="tag">&lt;/<span class="name">required</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">rtexprvalue</span>&gt;</span>true<span class="tag">&lt;/<span class="name">rtexprvalue</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attribute</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>paramEncoding<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">required</span>&gt;</span>false<span class="tag">&lt;/<span class="name">required</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">rtexprvalue</span>&gt;</span>true<span class="tag">&lt;/<span class="name">rtexprvalue</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tag</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">taglib</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Action层"><a href="#Action层" class="headerlink" title="Action层"></a>Action层</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Action</span>(<span class="string">"customerList"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">customerList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">//对应的struts2调用例子，struts2自动会把属性放到request作用域,分页会使用这个bean来获取分页信息.</span></span><br><span class="line">		pagination = customerService.selectAll(pagination, <span class="keyword">null</span>);<span class="comment">//pagination 是一个分页bean，自行实现..</span></span><br><span class="line">		<span class="keyword">return</span> SUCCESS;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="html层"><a href="#html层" class="headerlink" title="html层"></a>html层</h2><h3 id="头部引用"><a href="#头部引用" class="headerlink" title="头部引用"></a>头部引用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@taglib prefix=&quot;p&quot; uri=&quot;http://xxx.com/tag/page&quot; %&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="这个是tag里面写的需要调用的js方法-写到一个公共引用的地方"><a href="#这个是tag里面写的需要调用的js方法-写到一个公共引用的地方" class="headerlink" title="这个是tag里面写的需要调用的js方法,写到一个公共引用的地方"></a>这个是tag里面写的需要调用的js方法,写到一个公共引用的地方</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function pageJunmp(form,pageNum,pageBeanName)&#123;</span><br><span class="line">	var inputName = pageBeanName+&quot;.pageNum&quot;;</span><br><span class="line">	form=$(&quot;#&quot;+form);</span><br><span class="line">	var input = &quot;&lt;input type=&apos;hidden&apos; id=&apos;pageNum&apos; value=&apos;&quot;+pageNum+&quot;&apos; name=&apos;&quot;+inputName+&quot;&apos;&gt;&quot;;</span><br><span class="line">	form.append(input);</span><br><span class="line">	form.submit();</span><br><span class="line">&#125;	form.attr(&quot;method&quot;,&quot;post&quot;);</span><br></pre></td></tr></table></figure>
+<h3 id="查询form"><a href="#查询form" class="headerlink" title="查询form"></a>查询form</h3><p>在要使用分页的地方，必须要一个查询的form，分页的时候会调用这个form，实现带条件跳转<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;$&#123;ctx&#125;/customer/customerList&quot; id=&quot;seachForm&quot;&gt;</span><br><span class="line">	&lt;input type=&quot;text&quot; name=&quot;account&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="在需要分页的地方调用"><a href="#在需要分页的地方调用" class="headerlink" title="在需要分页的地方调用"></a>在需要分页的地方调用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p:pager seachForm=&quot;seachForm&quot;/&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.sitec.cc">keeleys</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.sitec.cc/2015/07/20/html-jsp-page/">http://www.sitec.cc/2015/07/20/html-jsp-page/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/html/">html</a>
+            
+              <a href="/tags/jsp/">jsp</a>
+            
+              <a href="/tags/bootcss/">bootcss</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2015/07/20/beetl-mybatis/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">使用beetl生成mybatis的mapping文件</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2015/07/20/html-html-localStorage/">
+        <span class="next-text nav-default">用html5的localStorage保存用户名和密码</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">keeleys</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://www.sitec.cc/2015/07/20/html-jsp-page/';
+        this.page.identifier = '2015/07/20/html-jsp-page/';
+        this.page.title = '做一个jsp自定义tag的bootstrap3公共分页';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//sitecc.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="MySQL存储过程笔记"/>
+
+
+
+
+  <meta name="keywords" content="mysql, database, http://www.sitec.cc/" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="http://www.sitec.cc/">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.sitec.cc/2018/07/24/mysql-procedure/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> MySQL存储过程笔记 - http://www.sitec.cc/ </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">http://www.sitec.cc/</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">http://www.sitec.cc/</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          MySQL存储过程笔记
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-07-24
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        <p>显示数据库中所有的存储过程<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">procedure</span> <span class="keyword">status</span>;</span><br></pre></td></tr></table></figure></p>
+<p>显示某个存储过程的详细信息(sp为存储过程名称)<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">procedure</span> sp;</span><br></pre></td></tr></table></figure></p>
+<p>最简单的存储过程<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> <span class="keyword">if</span> <span class="keyword">exists</span> sp//</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> sp() <span class="keyword">select</span> <span class="number">1</span> //</span><br><span class="line"><span class="comment">--调用存储过程</span></span><br><span class="line"><span class="keyword">call</span> sp()//</span><br></pre></td></tr></table></figure></p>
+<p>带输入参数的存储过程</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> <span class="keyword">if</span> <span class="keyword">exists</span> sp1 //</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> sp1(<span class="keyword">in</span> p <span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">    <span class="comment">--声明一个int类型的变量</span></span><br><span class="line">        <span class="keyword">declare</span> v1 <span class="built_in">int</span>;</span><br><span class="line">    <span class="comment">--将参数传给声明的变量，此步骤多余，可不要</span></span><br><span class="line">        <span class="keyword">set</span> v1 = p;</span><br><span class="line">        <span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">test</span>(<span class="keyword">id</span>) <span class="keyword">values</span>(v1);</span><br><span class="line">     <span class="keyword">end</span></span><br><span class="line">      //</span><br><span class="line"><span class="comment">--调用这个存储过程</span></span><br><span class="line"><span class="keyword">call</span> sp1(<span class="number">1</span>)//</span><br><span class="line"><span class="comment">--去数据库查看调用之后的结果</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span>//</span><br></pre></td></tr></table></figure>
+<p>带输出参数的存储过程</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> <span class="keyword">if</span> <span class="keyword">exists</span> sp2 //</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> sp2(<span class="keyword">out</span> p <span class="built_in">int</span>)</span><br><span class="line">   <span class="keyword">begin</span></span><br><span class="line">       <span class="keyword">select</span> <span class="keyword">max</span>(<span class="keyword">id</span>) <span class="keyword">into</span> p <span class="keyword">from</span> <span class="keyword">test</span>;</span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line">   //</span><br><span class="line"><span class="comment">--调用该存储过程，注意：输出参数必须是一个带@符号的变量</span></span><br><span class="line"><span class="keyword">call</span> sp2(@pv)</span><br></pre></td></tr></table></figure>
+<p>带输入和输出参数的存储过程</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> <span class="keyword">if</span> <span class="keyword">exists</span> sp3 //</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> sp3(<span class="keyword">in</span> p1 <span class="built_in">int</span> , <span class="keyword">out</span> p2 <span class="built_in">int</span>)</span><br><span class="line">   <span class="keyword">begin</span></span><br><span class="line">      <span class="keyword">if</span> p1 = <span class="number">1</span> <span class="keyword">then</span></span><br><span class="line">   <span class="comment">--用@符号加变量名的方式定义一个变量，与declare类似</span></span><br><span class="line">         <span class="keyword">set</span> @v = <span class="number">10</span>;</span><br><span class="line">      else</span><br><span class="line">         <span class="keyword">set</span> @v = <span class="number">20</span>;</span><br><span class="line">      <span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line">   <span class="comment">--语句体内可以执行多条sql，但必须以分号分隔</span></span><br><span class="line">      <span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">test</span>(<span class="keyword">id</span>) <span class="keyword">values</span>(@v);</span><br><span class="line">      <span class="keyword">select</span> <span class="keyword">max</span>(<span class="keyword">id</span>) <span class="keyword">into</span> p2 <span class="keyword">from</span> <span class="keyword">test</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    //</span><br><span class="line"><span class="comment">--调用该存储过程，注意：输入参数是一个值，而输出参数则必须是一个带@符号的变量</span></span><br><span class="line"><span class="keyword">call</span> sp3(<span class="number">1</span>,@ret)//</span><br><span class="line"><span class="keyword">select</span> @ret//</span><br></pre></td></tr></table></figure>
+<p>既做输入又做输出参数的存储过程</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> <span class="keyword">if</span> <span class="keyword">exists</span> sp4 //</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> sp4(inout p4 <span class="built_in">int</span>)</span><br><span class="line">   <span class="keyword">begin</span></span><br><span class="line">      <span class="keyword">if</span> p4 = <span class="number">4</span> <span class="keyword">then</span></span><br><span class="line">         <span class="keyword">set</span> @pg = <span class="number">400</span>;</span><br><span class="line">      else</span><br><span class="line">         <span class="keyword">set</span> @pg = <span class="number">500</span>;</span><br><span class="line">      <span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line">      <span class="keyword">select</span> @pg;</span><br><span class="line">    <span class="keyword">end</span>//</span><br><span class="line"><span class="keyword">call</span> sp4(@pp)//</span><br><span class="line"><span class="comment">--这里需要先设置一个已赋值的变量，然后再作为参数传入</span></span><br><span class="line"><span class="keyword">set</span> @pp = <span class="number">4</span>//</span><br><span class="line"><span class="keyword">call</span> sp4(@pp)//</span><br></pre></td></tr></table></figure>
+<p>带游标的存储过程</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">DELIMITER ;;</span><br><span class="line"><span class="keyword">CREATE</span> DEFINER=<span class="string">`root`</span>@<span class="string">`localhost`</span> <span class="keyword">PROCEDURE</span> <span class="string">`sss`</span>()</span><br><span class="line">    <span class="keyword">COMMENT</span> <span class="string">'insert table'</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="keyword">DECLARE</span> root <span class="built_in">INT</span>;</span><br><span class="line">    <span class="keyword">DECLARE</span> zid <span class="built_in">INT</span>;</span><br><span class="line">    <span class="keyword">DECLARE</span> done <span class="built_in">INT</span> <span class="keyword">DEFAULT</span> <span class="literal">FALSE</span>;</span><br><span class="line">    <span class="keyword">DECLARE</span> rs <span class="keyword">CURSOR</span> <span class="keyword">FOR</span> <span class="keyword">select</span> <span class="keyword">id</span>,tid <span class="keyword">from</span> demo;</span><br><span class="line">    <span class="keyword">DECLARE</span> CONTINUE <span class="keyword">HANDLER</span> <span class="keyword">FOR</span> <span class="keyword">NOT</span> <span class="keyword">FOUND</span> <span class="keyword">SET</span> done = <span class="literal">TRUE</span>;</span><br><span class="line"></span><br><span class="line">    OPEN rs;</span><br><span class="line">     read_loop: LOOP</span><br><span class="line">        FETCH  NEXT from rs INTO root,zid;</span><br><span class="line">        IF done THEN</span><br><span class="line">            LEAVE read_loop;</span><br><span class="line">        <span class="keyword">END</span> <span class="keyword">IF</span>;</span><br><span class="line">        <span class="keyword">insert</span> <span class="keyword">into</span> temp(rootid,zid) <span class="keyword">value</span>(root,zid);</span><br><span class="line">        <span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br><span class="line">    CLOSE rs;</span><br><span class="line"><span class="keyword">END</span>;;</span><br><span class="line">DELIMITER ;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.sitec.cc">keeleys</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.sitec.cc/2018/07/24/mysql-procedure/">http://www.sitec.cc/2018/07/24/mysql-procedure/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/mysql/">mysql</a>
+            
+              <a href="/tags/database/">database</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/03/16/ffmpeg/">
+        <span class="next-text nav-default">音视频开发相关的一些东西</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">keeleys</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://www.sitec.cc/2018/07/24/mysql-procedure/';
+        this.page.identifier = '2018/07/24/mysql-procedure/';
+        this.page.title = 'MySQL存储过程笔记';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//sitecc.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
