@@ -159,6 +159,109 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2015/07/20/html-html-localStorage/">用html5的localStorage保存用户名和密码</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-07-20
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/html5/">html5</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="js"><a href="#js" class="headerlink" title="js"></a>js</h2><p>用法很简单 把window.localStorage 当map用就可以了。<code>login.account</code>这些都是自定义的键.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"> 	$(<span class="string">"#account"</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//用户名改变自动保存</span></span><br><span class="line">		<span class="built_in">window</span>.localStorage[<span class="string">"login.account"</span>]=$(<span class="keyword">this</span>).val();</span><br><span class="line">	&#125;)</span><br><span class="line">	  	</span><br><span class="line">  	$(<span class="string">"#password"</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//密码先判断是否有勾选保存密码才决定是否保存</span></span><br><span class="line">  		<span class="keyword">if</span>( $(<span class="string">"#saveAccount"</span>).prop(<span class="string">"checked"</span>) )</span><br><span class="line">  			<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>]=$(<span class="keyword">this</span>).val();</span><br><span class="line">  	&#125;)</span><br><span class="line">  	</span><br><span class="line"> 	$(<span class="string">"#saveAccount"</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> 		<span class="keyword">if</span>( $(<span class="keyword">this</span>).prop(<span class="string">"checked"</span>) )<span class="comment">//如果勾选了保存密码 保存当前密码域的数据</span></span><br><span class="line"> 			<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>]=$(<span class="string">"#password"</span>).val();</span><br><span class="line"> 		<span class="keyword">else</span></span><br><span class="line"> 			<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>]=<span class="string">""</span>;</span><br><span class="line"> 	&#125;)</span><br><span class="line"> 	+<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     	<span class="keyword">if</span>(<span class="built_in">window</span>.localStorage[<span class="string">"login.account"</span>])&#123;</span><br><span class="line">     		$(<span class="string">"#account"</span>).val(<span class="built_in">window</span>.localStorage[<span class="string">"login.account"</span>]);</span><br><span class="line">     	&#125;</span><br><span class="line">     	<span class="keyword">if</span>(<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>])&#123;</span><br><span class="line">     		$(<span class="string">"#password"</span>).val(<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>]);</span><br><span class="line">     		$(<span class="string">"#saveAccount"</span>).prop(<span class="string">"checked"</span>,<span class="literal">true</span>);</span><br><span class="line">     	&#125;</span><br><span class="line"> 	&#125;();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2015/07/20/html-html-localStorage/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2015/07/15/html-html-header-img/">网站头像上传剪辑</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-07-15
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/html/">html</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="使用的flash-插件"><a href="#使用的flash-插件" class="headerlink" title="使用的flash 插件"></a>使用的flash 插件</h2><a class="btn btn-default" href="http://asv5.sinaapp.com/widget/avatar.php" target="_blank" rel="noopener">文档]</a>
+<a class="btn btn-default" href="https://github.com/keeleys/header_image" target="_blank" rel="noopener">插件代码]</a>
+<p>##界面预览<br><img src="https://dn-tianjun.qbox.me/ttianjun_header_upload.png" alt="界面预览"></p>
+          <div class="read-more">
+            <a href="/2015/07/15/html-html-header-img/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2015/07/10/freemarker-freemarker-kit/">用Freemarker生成静态HTML</a>
         
       </h1>
@@ -563,108 +666,6 @@
           <div class="read-more">
             <a href="/2015/06/27/html-js-jsontostr/" class="read-more-link">阅读更多</a>
           </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2015/06/27/git-git-alias/">git 常用命令</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2015-06-27
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/运维优化/">运维优化</a>
-            
-          </div>
-        
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>#git 常用命令</p>
-<h2 id="查看配置"><a href="#查看配置" class="headerlink" title="查看配置"></a>查看配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config -l</span><br></pre></td></tr></table></figure>
-<h2 id="添加别名配置"><a href="#添加别名配置" class="headerlink" title="添加别名配置"></a>添加别名配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.ad &quot;add --all&quot;</span><br><span class="line">git config --global alias.cm &quot;commit -m &apos;commit&apos; &quot;&quot;</span><br><span class="line">git config --global alias.pb &quot;push origin master&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="配置用户名邮箱"><a href="#配置用户名邮箱" class="headerlink" title="配置用户名邮箱"></a>配置用户名邮箱</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;xxx&quot;</span><br><span class="line">git config --global user.email &quot;xxx@gmail.com&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="生成ssh"><a href="#生成ssh" class="headerlink" title="生成ssh"></a>生成ssh</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;xxx@gmail.com&quot;</span><br></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/2015/06/27/git-git-alias/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2015/05/24/manual/">manual</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2015-05-24
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/manual/">manual</a>
-            
-              <a href="/categories/manual/mybatis/">mybatis</a>
-            
-          </div>
-        
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <p>##MyBatis<br><a href="https://mybatis.github.io/mybatis-3/zh/dynamic-sql.html" target="_blank" rel="noopener">https://mybatis.github.io/mybatis-3/zh/dynamic-sql.html</a></p>
-
         
       
     </div>

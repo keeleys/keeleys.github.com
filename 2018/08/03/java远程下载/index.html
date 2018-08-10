@@ -17,10 +17,12 @@
 
 
 
-  <meta name="description" content="程序员,java,互联网,学习"/>
+  <meta name="description" content="java远程下载"/>
 
 
 
+
+  <meta name="keywords" content="java, http://www.sitec.cc/" />
 
 
 
@@ -40,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.sitec.cc/tags/java/"/>
+<link rel="canonical" href="http://www.sitec.cc/2018/08/03/java远程下载/"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -77,11 +79,7 @@
 
 
 
-    <title>
-  
-    java · http://www.sitec.cc/
-  
-</title>
+    <title> java远程下载 - http://www.sitec.cc/ </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -157,118 +155,105 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
-    
-      
-        <div class="archive-title tag">
-          <h2 class="archive-name">java</h2>
-        </div>
-      
-    
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          java远程下载
+        
+      </h1>
 
-    
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2018-08-03
-          
+      <div class="post-meta">
+        <span class="post-time">
+          2018-08-03
         </span>
-        <span class="archive-post-title">
-          <a href="/2018/08/03/java远程下载/" class="archive-post-link">
-            java远程下载
-          </a>
-        </span>
+        
+        
       </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">java.net.URL url = <span class="keyword">new</span> java.net.URL(path);</span><br><span class="line">logger.info(<span class="string">"从url下载流:&#123;&#125;"</span>,url);</span><br><span class="line">InputStream inputStream = url.openConnection().getInputStream();</span><br><span class="line">HttpHeaders headers = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">headers.setContentLength(attachment.getSize());</span><br><span class="line">headers.set(HttpHeaders.CONTENT_TYPE, attachment.getContentType());</span><br><span class="line">headers.set(HttpHeaders.CONTENT_DISPOSITION, <span class="string">"attachment;filename=fileName"</span>);</span><br><span class="line">headers.setCacheControl(<span class="string">"public"</span>);</span><br><span class="line">InputStreamResource resource = <span class="keyword">new</span> InputStreamResource(inputStream);</span><br><span class="line">ResponseEntity&lt;InputStreamResource&gt; response = <span class="keyword">new</span> ResponseEntity&lt;&gt;(resource, headers, HttpStatus.OK);</span><br><span class="line"><span class="keyword">return</span> response;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
     
       
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2018-03-16
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2018/03/16/oss-alipay/" class="archive-post-link">
-            阿里云oss上传文件和文件夹
-          </a>
-        </span>
-      </div>
-    
       
 
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2018-03-08
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2018/03/08/spring-concurrent/" class="archive-post-link">
-            springboot 并发处理
-          </a>
-        </span>
-      </div>
-    
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.sitec.cc">keeleys</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.sitec.cc/2018/08/03/java远程下载/">http://www.sitec.cc/2018/08/03/java远程下载/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
       
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
 
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2015-10-30
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2015/10/30/logback/" class="archive-post-link">
-            使用logback记录日志
-          </a>
-        </span>
-      </div>
-    
+
+
       
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2015-10-21
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2015/10/21/common-kit/" class="archive-post-link">
-            收集整理的一些java工具类
-          </a>
-        </span>
-      </div>
-    
       
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2015-08-18
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2015/08/18/design-patterns/" class="archive-post-link">
-            23种设计模式+java例子+自己总结
-          </a>
-        </span>
-      </div>
     
-  </section>
 
-  
-  <nav class="pagination">
     
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/java/">java</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/08/08/linux-unoconv/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">linux上部署文档转换的服务</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/07/24/mysql-procedure/">
+        <span class="next-text nav-default">MySQL存储过程笔记</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
       </main>
@@ -342,9 +327,9 @@
   
   <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = '';
-        this.page.identifier = 'tags/java/index.html';
-        this.page.title = '';
+        this.page.url = 'http://www.sitec.cc/2018/08/03/java远程下载/';
+        this.page.identifier = '2018/08/03/java远程下载/';
+        this.page.title = 'java远程下载';
     };
     (function() {
     var d = document, s = d.createElement('script');

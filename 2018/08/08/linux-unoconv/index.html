@@ -17,12 +17,12 @@
 
 
 
-  <meta name="description" content="manual"/>
+  <meta name="description" content="linux上部署文档转换的服务"/>
 
 
 
 
-  <meta name="keywords" content="mybatis, http://www.sitec.cc/" />
+  <meta name="keywords" content="linux, http://www.sitec.cc/" />
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.sitec.cc/2015/05/24/manual/"/>
+<link rel="canonical" href="http://www.sitec.cc/2018/08/08/linux-unoconv/"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -79,7 +79,7 @@
 
 
 
-    <title> manual - http://www.sitec.cc/ </title>
+    <title> linux上部署文档转换的服务 - http://www.sitec.cc/ </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -159,22 +159,14 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          manual
+          linux上部署文档转换的服务
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2015-05-24
+          2018-08-08
         </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/manual/">manual</a>
-            
-              <a href="/categories/manual/mybatis/">mybatis</a>
-            
-          </div>
         
         
       </div>
@@ -182,10 +174,19 @@
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#docker"><span class="toc-text">docker</span></a></li></ol>
+    </div>
+  </div>
+
 
     <div class="post-content">
       
-        <p>##MyBatis<br><a href="https://mybatis.github.io/mybatis-3/zh/dynamic-sql.html" target="_blank" rel="noopener">https://mybatis.github.io/mybatis-3/zh/dynamic-sql.html</a></p>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https://xxx/unoconv/pdf</span><br><span class="line"></span><br><span class="line">curl --form &quot;file=@/Users/keeley/Downloads/BP神经网络详解-最好的版本.ppt&quot; https://xxx &gt; &quot;BP神经网络详解-最好的版本.ppt.pdf&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">###########################################################</span><br><span class="line">#</span><br><span class="line"># Dockerfile for using unoconv through a webservice</span><br><span class="line">#</span><br><span class="line">###########################################################</span><br><span class="line"></span><br><span class="line"># Setting the base to docker-node-unoconv</span><br><span class="line">FROM zrrrzzt/docker-node-unoconv:4.7.3</span><br><span class="line"></span><br><span class="line">RUN apt-get -y install ttf-wqy-microhei</span><br><span class="line"></span><br><span class="line"># Clone the repo</span><br><span class="line">RUN git clone https://github.com/zrrrzzt/tfk-api-unoconv.git unoconvservice</span><br><span class="line"></span><br><span class="line"># Change working directory</span><br><span class="line">WORKDIR /unoconvservice</span><br><span class="line"></span><br><span class="line"># Install dependencies</span><br><span class="line">RUN npm install --production</span><br><span class="line"></span><br><span class="line"># Env variables</span><br><span class="line">ENV SERVER_PORT 3000</span><br><span class="line"></span><br><span class="line"># 200mb</span><br><span class="line">ENV PAYLOAD_MAX_SIZE 209715200</span><br><span class="line"></span><br><span class="line"># Expose 3000</span><br><span class="line">EXPOSE 3000</span><br><span class="line"></span><br><span class="line"># Startup</span><br><span class="line">ENTRYPOINT /usr/bin/unoconv --listener --server=0.0.0.0 --port=2002 &amp; node standalone.js</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker build -t docker-unoconv-webservice .</span><br><span class="line">docker run -d -p 4000:3000 --name unoconv docker-unoconv-webservice</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -201,7 +202,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="http://www.sitec.cc/2015/05/24/manual/">http://www.sitec.cc/2015/05/24/manual/</a>
+      <a href="http://www.sitec.cc/2018/08/08/linux-unoconv/">http://www.sitec.cc/2018/08/08/linux-unoconv/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -221,7 +222,7 @@
         
           <div class="post-tags">
             
-              <a href="/tags/mybatis/">mybatis</a>
+              <a href="/tags/linux/">linux</a>
             
           </div>
         
@@ -229,15 +230,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2015/05/24/lodop/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">lodop web打印控件</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
     
-    
-      <a class="next" href="/2015/01/31/html-javascript-module-1/">
-        <span class="next-text nav-default">Javascript模块化编程（一）：模块的写法</span>
+      <a class="next" href="/2018/08/03/java远程下载/">
+        <span class="next-text nav-default">java远程下载</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
@@ -336,9 +331,9 @@
   
   <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://www.sitec.cc/2015/05/24/manual/';
-        this.page.identifier = '2015/05/24/manual/';
-        this.page.title = 'manual';
+        this.page.url = 'http://www.sitec.cc/2018/08/08/linux-unoconv/';
+        this.page.identifier = '2018/08/08/linux-unoconv/';
+        this.page.title = 'linux上部署文档转换的服务';
     };
     (function() {
     var d = document, s = d.createElement('script');

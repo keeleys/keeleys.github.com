@@ -159,6 +159,106 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2015/10/21/common-kit/">收集整理的一些java工具类</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-10-21
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/java/">java</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>common-kit</p>
+          <div class="read-more">
+            <a href="/2015/10/21/common-kit/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2015/09/15/linux-mysql/">阿里云主机安装myslq5.5和tomcat 7</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-09-15
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/linux/">linux</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>linux-mysql</p>
+          <div class="read-more">
+            <a href="/2015/09/15/linux-mysql/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2015/08/29/tenginx/">Tengine 的安装以及Tengine + Lua + GraphicsMagick 实现图片裁剪缩放</a>
         
       </h1>
@@ -548,109 +648,6 @@
 <h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>本来用模版分页更优雅的，但项目很多同事不熟悉，只好先做个jsp版本的。<br>方案就是写一个servlet的tag的分页tag实现，根据tag里面的参数拼凑html代码。<br>有几个关键参数，当前页，总页数，以及跳转链接<br>tag中获取当前页和总页数是从request中获取分页bean来获得的，有些耦合分页bean,但好处是前端分页标签可以不用传分页参数。<br>跳转链接这个实现，依赖前端的查询from，因为业务上，有分页的基本上都会有条件查询，所以直接用form提交了，点击分页跳转的时候会在form中插入当前页的数据到隐藏域供后端查询。</p>
           <div class="read-more">
             <a href="/2015/07/20/html-jsp-page/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2015/07/20/html-html-localStorage/">用html5的localStorage保存用户名和密码</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2015-07-20
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/html5/">html5</a>
-            
-          </div>
-        
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h2 id="js"><a href="#js" class="headerlink" title="js"></a>js</h2><p>用法很简单 把window.localStorage 当map用就可以了。<code>login.account</code>这些都是自定义的键.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"> 	$(<span class="string">"#account"</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//用户名改变自动保存</span></span><br><span class="line">		<span class="built_in">window</span>.localStorage[<span class="string">"login.account"</span>]=$(<span class="keyword">this</span>).val();</span><br><span class="line">	&#125;)</span><br><span class="line">	  	</span><br><span class="line">  	$(<span class="string">"#password"</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//密码先判断是否有勾选保存密码才决定是否保存</span></span><br><span class="line">  		<span class="keyword">if</span>( $(<span class="string">"#saveAccount"</span>).prop(<span class="string">"checked"</span>) )</span><br><span class="line">  			<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>]=$(<span class="keyword">this</span>).val();</span><br><span class="line">  	&#125;)</span><br><span class="line">  	</span><br><span class="line"> 	$(<span class="string">"#saveAccount"</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> 		<span class="keyword">if</span>( $(<span class="keyword">this</span>).prop(<span class="string">"checked"</span>) )<span class="comment">//如果勾选了保存密码 保存当前密码域的数据</span></span><br><span class="line"> 			<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>]=$(<span class="string">"#password"</span>).val();</span><br><span class="line"> 		<span class="keyword">else</span></span><br><span class="line"> 			<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>]=<span class="string">""</span>;</span><br><span class="line"> 	&#125;)</span><br><span class="line"> 	+<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     	<span class="keyword">if</span>(<span class="built_in">window</span>.localStorage[<span class="string">"login.account"</span>])&#123;</span><br><span class="line">     		$(<span class="string">"#account"</span>).val(<span class="built_in">window</span>.localStorage[<span class="string">"login.account"</span>]);</span><br><span class="line">     	&#125;</span><br><span class="line">     	<span class="keyword">if</span>(<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>])&#123;</span><br><span class="line">     		$(<span class="string">"#password"</span>).val(<span class="built_in">window</span>.localStorage[<span class="string">"login.pwd"</span>]);</span><br><span class="line">     		$(<span class="string">"#saveAccount"</span>).prop(<span class="string">"checked"</span>,<span class="literal">true</span>);</span><br><span class="line">     	&#125;</span><br><span class="line"> 	&#125;();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/2015/07/20/html-html-localStorage/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2015/07/15/html-html-header-img/">网站头像上传剪辑</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2015-07-15
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/html/">html</a>
-            
-          </div>
-        
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h2 id="使用的flash-插件"><a href="#使用的flash-插件" class="headerlink" title="使用的flash 插件"></a>使用的flash 插件</h2><a class="btn btn-default" href="http://asv5.sinaapp.com/widget/avatar.php" target="_blank" rel="noopener">文档]</a>
-<a class="btn btn-default" href="https://github.com/keeleys/header_image" target="_blank" rel="noopener">插件代码]</a>
-<p>##界面预览<br><img src="https://dn-tianjun.qbox.me/ttianjun_header_upload.png" alt="界面预览"></p>
-          <div class="read-more">
-            <a href="/2015/07/15/html-html-header-img/" class="read-more-link">阅读更多</a>
           </div>
         
       
