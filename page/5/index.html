@@ -159,6 +159,59 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2015/07/20/html-jsp-page/">做一个jsp自定义tag的bootstrap3公共分页</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-07-20
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/html/">html</a>
+            
+              <a href="/categories/html/jsp/">jsp</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><p><img src="https://dn-tianjun.qbox.me/ttianjunQQ截图20150720135230.png" alt="分页"></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>本来用模版分页更优雅的，但项目很多同事不熟悉，只好先做个jsp版本的。<br>方案就是写一个servlet的tag的分页tag实现，根据tag里面的参数拼凑html代码。<br>有几个关键参数，当前页，总页数，以及跳转链接<br>tag中获取当前页和总页数是从request中获取分页bean来获得的，有些耦合分页bean,但好处是前端分页标签可以不用传分页参数。<br>跳转链接这个实现，依赖前端的查询from，因为业务上，有分页的基本上都会有条件查询，所以直接用form提交了，点击分页跳转的时候会在form中插入当前页的数据到隐藏域供后端查询。</p>
+          <div class="read-more">
+            <a href="/2015/07/20/html-jsp-page/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2015/07/20/html-html-localStorage/">用html5的localStorage保存用户名和密码</a>
         
       </h1>
@@ -615,56 +668,6 @@
 <p>//查看4000端口是否被占用<br>sudo lsof -i :4000</p>
           <div class="read-more">
             <a href="/2015/06/28/mac-mac-prot/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2015/06/27/html-js-jsontostr/">javascript 常用操作</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2015-06-27
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/前端/">前端</a>
-            
-          </div>
-        
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>javascript 常用操作</p>
-          <div class="read-more">
-            <a href="/2015/06/27/html-js-jsontostr/" class="read-more-link">阅读更多</a>
           </div>
         
       

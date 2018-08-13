@@ -187,6 +187,7 @@
         <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>unoconv，全称为 Universal Office Converter ，是一个命令行工具，可在linux平台,对LibreOffice/OpenOffice 支持的任意文件格式之间进行转换</p>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>一般使用这个会需要配置很多运行环境,为了快速开发网上找了一个部署好环境的docker镜像.转换的事情直接docker做好了,我们只需要加工一下,处理消息的传入传出和错误处理就好了</p>
 <p><a href="https://hub.docker.com/r/zrrrzzt/docker-unoconv-webservice/" target="_blank" rel="noopener">https://hub.docker.com/r/zrrrzzt/docker-unoconv-webservice/</a><br><a href="https://github.com/keeleys/docker-unocnv" target="_blank" rel="noopener">https://github.com/keeleys/docker-unocnv</a></p>
+<p>docker run -d -p 80:3000 –name unoconv docker-unoconv-webservice</p>
 <h2 id="具体使用"><a href="#具体使用" class="headerlink" title="具体使用"></a>具体使用</h2><p>该docker版本的unoconv是已服务的方式进行部署的,我们用的时候,需要将待转换的文旦上传到转换服务,转换服务成功之后返回pdf流,然后我们将pdf流输出成未见.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --form &quot;file=@/Users/keeley/Downloads/BP神经网络详解-最好的版本.ppt&quot; https://dev9.zhixueyun.com/unoconv/pdf &gt; &quot;BP神经网络详解-最好的版本.ppt.pdf&quot;</span><br></pre></td></tr></table></figure>
 <h2 id="java中的使用"><a href="#java中的使用" class="headerlink" title="java中的使用"></a>java中的使用</h2><blockquote>
@@ -244,6 +245,12 @@
         
         
   <nav class="post-nav">
+    
+      <a class="prev" href="/2018/08/13/docker-tips/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">docker-tips</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
     
     
       <a class="next" href="/2018/08/03/java远程下载/">
