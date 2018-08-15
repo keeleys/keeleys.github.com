@@ -174,12 +174,25 @@
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例子"><span class="toc-text">例子</span></a></li></ol>
+    </div>
+  </div>
+
 
     <div class="post-content">
       
-        <p>显示数据库中所有的存储过程<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">procedure</span> <span class="keyword">status</span>;</span><br></pre></td></tr></table></figure></p>
+        <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote>
+<blockquote>
+<p>注意每行sql前不能留空</p>
+</blockquote>
+</blockquote>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>显示数据库中所有的存储过程<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">procedure</span> <span class="keyword">status</span>;</span><br></pre></td></tr></table></figure></p>
 <p>显示某个存储过程的详细信息(sp为存储过程名称)<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">procedure</span> sp;</span><br></pre></td></tr></table></figure></p>
 <p>最简单的存储过程<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> <span class="keyword">if</span> <span class="keyword">exists</span> sp//</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> sp() <span class="keyword">select</span> <span class="number">1</span> //</span><br><span class="line"><span class="comment">--调用存储过程</span></span><br><span class="line"><span class="keyword">call</span> sp()//</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>带输入参数的存储过程</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> <span class="keyword">if</span> <span class="keyword">exists</span> sp1 //</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> sp1(<span class="keyword">in</span> p <span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">    <span class="comment">--声明一个int类型的变量</span></span><br><span class="line">        <span class="keyword">declare</span> v1 <span class="built_in">int</span>;</span><br><span class="line">    <span class="comment">--将参数传给声明的变量，此步骤多余，可不要</span></span><br><span class="line">        <span class="keyword">set</span> v1 = p;</span><br><span class="line">        <span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">test</span>(<span class="keyword">id</span>) <span class="keyword">values</span>(v1);</span><br><span class="line">     <span class="keyword">end</span></span><br><span class="line">      //</span><br><span class="line"><span class="comment">--调用这个存储过程</span></span><br><span class="line"><span class="keyword">call</span> sp1(<span class="number">1</span>)//</span><br><span class="line"><span class="comment">--去数据库查看调用之后的结果</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span>//</span><br></pre></td></tr></table></figure>
 <p>带输出参数的存储过程</p>
@@ -235,7 +248,7 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/08/03/java远程下载/">
+      <a class="prev" href="/2018/08/03/java-netdown/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">java远程下载</span>
         <span class="prev-text nav-mobile">上一篇</span>

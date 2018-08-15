@@ -183,7 +183,7 @@
     <div class="post-content">
       
         <h2 id="docker-删除none镜像"><a href="#docker-删除none镜像" class="headerlink" title="docker 删除none镜像"></a>docker 删除none镜像</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker stop $(docker ps -a | grep <span class="string">"Exited"</span> | awk <span class="string">'&#123;print $1 &#125;'</span>)   //停止容器  </span><br><span class="line">docker rm $(docker ps -a | grep <span class="string">"Exited"</span> | awk <span class="string">'&#123;print $1 &#125;'</span>)    //删除容器  </span><br><span class="line">docker rmi $(docker images | grep <span class="string">"none"</span> | awk <span class="string">'&#123;print $3&#125;'</span>)    //删除镜像</span><br></pre></td></tr></table></figure>
-
+<a id="more"></a>
       
     </div>
 
