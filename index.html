@@ -47,6 +47,8 @@
 
 
 
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
 
 
 
@@ -77,7 +79,9 @@
 
 
 
-    <title> 凉水 </title>
+    <title>
+  
+</title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -103,11 +107,29 @@
         </li>
       </a>
     
-      <a href="/archives/">
+      <a href="/tags">
         <li class="mobile-menu-item">
           
           
-            归档
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
           
         </li>
       </a>
@@ -134,10 +156,28 @@
         </li>
       
         <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
+          <a class="menu-item-link" href="/tags">
             
             
-              归档
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
             
           </a>
         </li>
@@ -152,489 +192,162 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
-  <section id="posts" class="posts">
+  
+  <section id="archive" class="archive">
     
       
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/08/13/docker-tips/">docker-tips</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-08-13
-        </span>
-        
-        
-      </div>
-    </header>
-
-    
     
 
-    <div class="post-content">
+    
       
-        
-        
+
+      <div class="archive-post">
+        <span class="archive-post-time">
           
-        
-
-        
-          <h2 id="docker-删除none镜像"><a href="#docker-删除none镜像" class="headerlink" title="docker 删除none镜像"></a>docker 删除none镜像</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker stop $(docker ps -a | grep <span class="string">"Exited"</span> | awk <span class="string">'&#123;print $1 &#125;'</span>)   //停止容器  </span><br><span class="line">docker rm $(docker ps -a | grep <span class="string">"Exited"</span> | awk <span class="string">'&#123;print $1 &#125;'</span>)    //删除容器  </span><br><span class="line">docker rmi $(docker images | grep <span class="string">"none"</span> | awk <span class="string">'&#123;print $3&#125;'</span>)    //删除镜像</span><br></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/2018/08/13/docker-tips/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/08/08/linux-unoconv/">linux上部署文档转换的服务</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-08-08
-        </span>
-        
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
+            2018-08-13
           
-        
-
-        
-          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>unoconv，全称为 Universal Office Converter ，是一个命令行工具，可在linux平台,对LibreOffice/OpenOffice 支持的任意文件格式之间进行转换</p>
-          <div class="read-more">
-            <a href="/2018/08/08/linux-unoconv/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/08/03/java-netdown/">java远程下载</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-08-03
         </span>
-        
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">java.net.URL url = <span class="keyword">new</span> java.net.URL(path);</span><br><span class="line">logger.info(<span class="string">"从url下载流:&#123;&#125;"</span>,url);</span><br><span class="line">InputStream inputStream = url.openConnection().getInputStream();</span><br><span class="line">HttpHeaders headers = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">headers.setContentLength(attachment.getSize());</span><br><span class="line">headers.set(HttpHeaders.CONTENT_TYPE, attachment.getContentType());</span><br><span class="line">headers.set(HttpHeaders.CONTENT_DISPOSITION, <span class="string">"attachment;filename=fileName"</span>);</span><br><span class="line">headers.setCacheControl(<span class="string">"public"</span>);</span><br><span class="line">InputStreamResource resource = <span class="keyword">new</span> InputStreamResource(inputStream);</span><br><span class="line">ResponseEntity&lt;InputStreamResource&gt; response = <span class="keyword">new</span> ResponseEntity&lt;&gt;(resource, headers, HttpStatus.OK);</span><br><span class="line"><span class="keyword">return</span> response;</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/07/24/mysql-procedure/">MySQL存储过程笔记</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-07-24
+        <span class="archive-post-title">
+          <a href="/2018/08/13/docker-tips/" class="archive-post-link">
+            docker-tips
+          </a>
         </span>
-        
-        
       </div>
-    </header>
-
     
-    
-
-    <div class="post-content">
       
-        
-        
+
+      <div class="archive-post">
+        <span class="archive-post-time">
           
-        
-
-        
-          <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><blockquote>
-<blockquote>
-<p>注意每行sql前不能留空</p>
-</blockquote>
-</blockquote>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>显示数据库中所有的存储过程<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">procedure</span> <span class="keyword">status</span>;</span><br></pre></td></tr></table></figure></p>
-<p>显示某个存储过程的详细信息(sp为存储过程名称)<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">procedure</span> sp;</span><br></pre></td></tr></table></figure></p>
-<p>最简单的存储过程<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> <span class="keyword">if</span> <span class="keyword">exists</span> sp//</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> sp() <span class="keyword">select</span> <span class="number">1</span> //</span><br><span class="line"><span class="comment">--调用存储过程</span></span><br><span class="line"><span class="keyword">call</span> sp()//</span><br></pre></td></tr></table></figure></p>
-          <div class="read-more">
-            <a href="/2018/07/24/mysql-procedure/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/03/16/ffmpeg/">音视频开发相关的一些东西</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-03-16
-        </span>
-        
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <h2 id="视频转换ffmpeg"><a href="#视频转换ffmpeg" class="headerlink" title="视频转换ffmpeg"></a>视频转换ffmpeg</h2><h3 id="转码"><a href="#转码" class="headerlink" title="转码"></a>转码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -y -i file -c:v libx264 -c:a aac -pix_fmt yuv420p -preset fast -max_muxing_queue_size 1024 newFile</span><br></pre></td></tr></table></figure>
-<h3 id="改变分辨率"><a href="#改变分辨率" class="headerlink" title="改变分辨率"></a>改变分辨率</h3><ul>
-<li>ntsc 720x480</li>
-<li>hd720 1280x720</li>
-<li>hd1080 1920x1080</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -y -i 7minutes_trans_480.mp4 -s 320:240 -c:a copy 7minutes_240.mp4</span><br><span class="line"></span><br><span class="line">ffmpeg -i 7minutes_trans_480.mp4 -vf scale=320:240 -c:a copy 7minutes_240.mp4</span><br></pre></td></tr></table></figure>
-<h3 id="水印"><a href="#水印" class="headerlink" title="水印"></a>水印</h3><ul>
-<li>左上角 overlay参数为 overlay=0:0</li>
-<li>右上角为 overlay= main_w-overlay_w:0</li>
-<li>右下角为 overlay= main_w-overlay_w:main_h-overlay_h</li>
-<li>左下角为 overlay=0: main_h-overlay_h</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i demo.avi -i watermark.png -filter_complex &quot;overlay=main_w-overlay_w-10:10&quot; -y keeley.mp4</span><br></pre></td></tr></table></figure>
-<h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3><h4 id="查询旋转"><a href="#查询旋转" class="headerlink" title="查询旋转"></a>查询旋转</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i IMG_1821.MOV 2&gt;&amp;1 | grep rotate</span><br></pre></td></tr></table></figure>
-<h4 id="旋转-1"><a href="#旋转-1" class="headerlink" title="旋转"></a>旋转</h4><h5 id="编码旋转"><a href="#编码旋转" class="headerlink" title="编码旋转"></a>编码旋转</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">rem For the transpose parameter you can pass:</span><br><span class="line"></span><br><span class="line">rem 0 = 90逆时针并且垂直翻转(default)</span><br><span class="line">rem 1 = 90顺时针</span><br><span class="line">rem 2 = 90度逆时针</span><br><span class="line">rem 3 = 90顺时针并且垂直翻转</span><br><span class="line"></span><br><span class="line">rem To rotate 180 degrees, instead use &quot;transpose=2,transpose=2&quot;</span><br><span class="line"></span><br><span class="line">rem Using -codec:a copy will simply copy the audio instead of reencoding it.</span><br><span class="line"></span><br><span class="line">ffmpeg -i in.mp4 -vf &quot;transpose=1&quot; -codec:a copy out.mp4</span><br></pre></td></tr></table></figure>
-<h5 id="不编码旋转"><a href="#不编码旋转" class="headerlink" title="不编码旋转"></a>不编码旋转</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i IMG_1821.MOV -metadata:s:v rotate=&quot;0&quot; -codec copy output.mp4</span><br></pre></td></tr></table></figure>
-<p><a href="http://einverne.github.io/post/2015/12/ffmpeg-first.html" target="_blank" rel="noopener">http://einverne.github.io/post/2015/12/ffmpeg-first.html</a><br><a href="https://lars.st0ne.at/blog/html5+video+in+IE11+-+size+does+matter" target="_blank" rel="noopener">https://lars.st0ne.at/blog/html5+video+in+IE11+-+size+does+matter</a><br><a href="https://trac.ffmpeg.org/wiki/Encode/H.264" target="_blank" rel="noopener">https://trac.ffmpeg.org/wiki/Encode/H.264</a><br><a href="http://www.cnblogs.com/tinywan/p/6404411.html" target="_blank" rel="noopener">http://www.cnblogs.com/tinywan/p/6404411.html</a><br><a href="http://www.cnblogs.com/tinywan/p/7877738.html" target="_blank" rel="noopener">http://www.cnblogs.com/tinywan/p/7877738.html</a><br><a href="http://blog.csdn.net/leixiaohua1020/article/category/1360795" target="_blank" rel="noopener">http://blog.csdn.net/leixiaohua1020/article/category/1360795</a><br><a href="https://www.jianshu.com/p/053665062f22" target="_blank" rel="noopener">https://www.jianshu.com/p/053665062f22</a><br><a href="https://support.google.com/youtube/answer/2853702?hl=zh-Hans" target="_blank" rel="noopener">https://support.google.com/youtube/answer/2853702?hl=zh-Hans</a><br><code>`</code></p>
-
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/03/16/oss-alipay/">阿里云oss上传文件和文件夹</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-03-16
-        </span>
-        
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">endpoint // oss的上传服务器的配置</span><br><span class="line">accessKeyId // 阿里云的key</span><br><span class="line">accessKeySecret // 阿里云的</span><br><span class="line">bucketName // oss的空间</span><br></pre></td></tr></table></figure>
-<h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun.oss<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-sdk-oss<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="编写工具类"><a href="#编写工具类" class="headerlink" title="编写工具类"></a>编写工具类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zxy.keeley.filetocdn.kit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.ClientException;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSSClient;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSSException;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.CompleteMultipartUploadResult;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.UploadFileRequest;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.UploadFileResult;</span><br><span class="line"><span class="keyword">import</span> com.zxy.keeley.filetocdn.config.Content;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.StringUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> keeley</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018/2/7</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OSSKit</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(OSSKit.class);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String separator = <span class="string">"/"</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 上传文件夹</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dir</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateDirectory</span><span class="params">(String dir, String key)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(StringUtils.isEmpty(dir) || StringUtils.isEmpty(key)) &#123;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(key.startsWith(separator)) &#123;</span><br><span class="line">            key = key.substring(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        File[] files = <span class="keyword">new</span> File(dir).listFiles();</span><br><span class="line">        <span class="keyword">for</span>(File a:files)&#123;</span><br><span class="line">            String fileName = a.getName();</span><br><span class="line">            <span class="keyword">if</span>(a.isDirectory())&#123;</span><br><span class="line">                updateDirectory(a.getAbsolutePath(), key +separator+ fileName);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                uploadFile(a.getAbsolutePath(),key+separator+a.getName());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> filePath</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">uploadFile</span><span class="params">(String filePath,String key)</span> </span>&#123;</span><br><span class="line">        OSSClient client = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            client = <span class="keyword">new</span> OSSClient(Content.ossEndpoint, Content.ossAccessKeyId, Content.ossAccessKeySecret);</span><br><span class="line">            <span class="comment">// 上传文件流</span></span><br><span class="line">            InputStream inputStream = <span class="keyword">new</span> FileInputStream(filePath);</span><br><span class="line">            client.putObject(Content.ossBucketName, key, inputStream);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            logger.info(<span class="string">"FileNotFoundException:"</span>,e);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (client != <span class="keyword">null</span>) &#123;</span><br><span class="line">                client.shutdown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 普通上传</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> filePath</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">uploadFile</span><span class="params">(String filePath)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.uploadFile(filePath, <span class="keyword">new</span> File(filePath).getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 分段上传</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> uploadFile</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">uploadFileMulti</span><span class="params">(String uploadFile, String key)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        OSSClient client = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(key.startsWith(separator)) &#123;</span><br><span class="line">                key = key.substring(<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            client = <span class="keyword">new</span> OSSClient(Content.ossEndpoint, Content.ossAccessKeyId, Content.ossAccessKeySecret);</span><br><span class="line">            UploadFileRequest uploadFileRequest = <span class="keyword">new</span> UploadFileRequest(Content.ossBucketName, key);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 待上传的本地文件</span></span><br><span class="line">            uploadFileRequest.setUploadFile(uploadFile);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 设置并发下载数，默认1</span></span><br><span class="line">            uploadFileRequest.setTaskNum(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 设置分片大小，默认100KB</span></span><br><span class="line">            uploadFileRequest.setPartSize(<span class="number">1024</span> * <span class="number">1024</span> * <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 开启断点续传，默认关闭</span></span><br><span class="line">            uploadFileRequest.setEnableCheckpoint(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">            UploadFileResult uploadResult = client.uploadFile(uploadFileRequest);</span><br><span class="line"></span><br><span class="line">            CompleteMultipartUploadResult multipartUploadResult =  uploadResult.getMultipartUploadResult();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> multipartUploadResult.getETag();</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (OSSException oe) &#123;</span><br><span class="line">            logger.error(<span class="string">"OSSException"</span>,oe);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClientException ce) &#123;</span><br><span class="line">            logger.error(<span class="string">"ClientException"</span>,ce);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable throwable) &#123;</span><br><span class="line">            logger.error(<span class="string">"throwable"</span>, throwable);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (client != <span class="keyword">null</span>) &#123;</span><br><span class="line">                client.shutdown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/03/08/spring-concurrent/">springboot 并发处理</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-03-08
-        </span>
-        
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <h2 id="使用-lock解决并发问题"><a href="#使用-lock解决并发问题" class="headerlink" title="使用 lock解决并发问题"></a>使用 lock解决并发问题</h2><p>springmvc默认是单例的线程不安全的，多个请求对应的是同一个对象，所以如果客户端并发访问特别多的时候，会造成代码线程安全。<br>比如说你代码里面可能会有if判断，但是如果线程不安全的 if判断不能保证了。<br>使用lock锁住可保持一致性</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ControllerA</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> Lock insertLock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        insertLock.lock();</span><br><span class="line">        doSomeThing();</span><br><span class="line">    &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">        insertLock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>lock synchronized的对比可以网上查一下，区别就是更自主，性能更好，能控制中断和查询等待数量<br>另外还有reentrantreadwritelock啥的，等用的时候再说</p>
-</blockquote>
-<h2 id="使用redis解决并发"><a href="#使用redis解决并发" class="headerlink" title="使用redis解决并发"></a>使用redis解决并发</h2><blockquote>
-<blockquote>
-<p>原理，利用setnx判断是存在key(setnx)来锁定，利用redis eval(lua)来原子性删除key(删除锁),部分代码如下</p>
-</blockquote>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Redis自己实现下 ClusterRedis，和JedisPool</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisLockKit</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(RedisLockKit.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> Redis redis;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ThreadLocal&lt;String&gt; lockFlag = <span class="keyword">new</span> ThreadLocal&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String UNLOCK_LUA;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        sb.append(<span class="string">"if redis.call(\"get\",KEYS[1]) == ARGV[1] "</span>);</span><br><span class="line">        sb.append(<span class="string">"then "</span>);</span><br><span class="line">        sb.append(<span class="string">"    return redis.call(\"del\",KEYS[1]) "</span>);</span><br><span class="line">        sb.append(<span class="string">"else "</span>);</span><br><span class="line">        sb.append(<span class="string">"    return 0 "</span>);</span><br><span class="line">        sb.append(<span class="string">"end "</span>);</span><br><span class="line">        UNLOCK_LUA = sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 加锁</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">lock</span><span class="params">(String key, <span class="keyword">long</span> expire)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> result = setRedis(key, expire);</span><br><span class="line">        <span class="keyword">while</span>((!result))&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                logger.debug(<span class="string">"获取锁失败 重试中 &#123;&#125;..."</span>);</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            result = setRedis(key, expire);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 解锁</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">unLock</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Long result = redis.eval(UNLOCK_LUA, Arrays.asList(key), Arrays.asList(lockFlag.get()));</span><br><span class="line">            <span class="keyword">return</span> result != <span class="keyword">null</span> &amp;&amp; result &gt; <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            logger.error(<span class="string">"解锁失败"</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">setRedis</span><span class="params">(String key, <span class="keyword">long</span> expire)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            String result = redis.process(commands-&gt; &#123;</span><br><span class="line">                String uuid = UUID.randomUUID().toString();</span><br><span class="line">                lockFlag.set(uuid);</span><br><span class="line">                <span class="keyword">return</span> commands.set(key, uuid, <span class="string">"NX"</span>, <span class="string">"PX"</span>, expire);</span><br><span class="line">            &#125;);</span><br><span class="line">            logger.info(<span class="string">"result: &#123;&#125;"</span>,result);</span><br><span class="line">            <span class="keyword">return</span> !StringUtils.isEmpty(result);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            logger.error(<span class="string">"key &#123;&#125; 设置失败"</span>, key, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/11/30/crypto-js/">crypto,js，java加密解密</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-11-30
-        </span>
-        
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
+            2018-08-08
           
-        
-
-        
-          <p>aes128模式，js加密，java解密的例子</p>
-          <div class="read-more">
-            <a href="/2017/11/30/crypto-js/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/02/10/proxychains/">shadowsocks 科学上网的终端控制</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-02-10
         </span>
-        
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <h2 id="shadowsocks-客户端"><a href="#shadowsocks-客户端" class="headerlink" title="shadowsocks 客户端"></a>shadowsocks 客户端</h2><p>客户端推荐使用<a href="https://github.com/shadowsocksr" target="_blank" rel="noopener">shadowsocksR</a>,配置很强大</p>
-<h2 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h2><p>网上那些 set http proxy啥的都不好用。所以最后还是用这个自动代理工具了，</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install proxychains-ng</span><br></pre></td></tr></table></figure>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>修改配置 参考路径<br>/usr/local/Cellar/proxychains-ng/4.12/etc/proxychains.conf</p>
-<p>这个端口跟你运行的shadowsocks配置的端口一致<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[ProxyList]</span><br><span class="line">socks5  127.0.0.1 1080</span><br></pre></td></tr></table></figure></p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>然后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains4 wget https://github.com/jeromelebel/MongoHub-Mac/archive/3.1.5b1.zip</span><br></pre></td></tr></table></figure></p>
-<p>当然可以设置下别名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias pc=&quot;proxychains4&quot;</span><br></pre></td></tr></table></figure></p>
-
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/02/09/npm/">npm发布</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-02-09
+        <span class="archive-post-title">
+          <a href="/2018/08/08/linux-unoconv/" class="archive-post-link">
+            linux上部署文档转换的服务
+          </a>
         </span>
-        
-        
       </div>
-    </header>
-
     
-    
-
-    <div class="post-content">
       
-        
-        
 
-        
-          <h2 id="发布自己写的模块到npm"><a href="#发布自己写的模块到npm" class="headerlink" title="发布自己写的模块到npm"></a>发布自己写的模块到npm</h2><ol>
-<li><p>先生成一个npm项目</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn init 或者 npm init</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>写主要js啥的 然后在<code>package.json</code>的<code>main</code>属性表明入口js位子。</p>
-</li>
-<li><p>到 <code>https://www.npmjs.com/</code> 注册自己的账号</p>
-</li>
-<li><p>运行 <code>npm adduser</code> 命令,把自己注册填写的账号密码邮箱输入下咯</p>
-</li>
-<li><p>运行 <code>npm publish</code> 就发布了</p>
-</li>
-<li><p>如果修改了需要继续发布，请修改下package里面的版本号 </p>
-</li>
-<li><p>根项目里面可以写readme.md npm的项目主页就能看到描述了</p>
-</li>
-<li><p><code>package.json</code> 的<code>repository</code> 里面可以写上该项目的git托管地址</p>
-</li>
-</ol>
-<h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h2><ul>
-<li><p>npm</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>yarn</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn config set registry &apos;https://registry.npm.taobao.org&apos;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-        
+      <div class="archive-post">
+        <span class="archive-post-time">
+          
+            2018-08-03
+          
+        </span>
+        <span class="archive-post-title">
+          <a href="/2018/08/03/java-netdown/" class="archive-post-link">
+            java远程下载
+          </a>
+        </span>
+      </div>
+    
       
-    </div>
 
+      <div class="archive-post">
+        <span class="archive-post-time">
+          
+            2018-07-24
+          
+        </span>
+        <span class="archive-post-title">
+          <a href="/2018/07/24/mysql-procedure/" class="archive-post-link">
+            MySQL存储过程笔记
+          </a>
+        </span>
+      </div>
     
+      
 
+      <div class="archive-post">
+        <span class="archive-post-time">
+          
+            2018-03-16
+          
+        </span>
+        <span class="archive-post-title">
+          <a href="/2018/03/16/ffmpeg/" class="archive-post-link">
+            音视频开发相关的一些东西
+          </a>
+        </span>
+      </div>
     
+      
 
-  </article>
+      <div class="archive-post">
+        <span class="archive-post-time">
+          
+            2018-03-16
+          
+        </span>
+        <span class="archive-post-title">
+          <a href="/2018/03/16/oss-alipay/" class="archive-post-link">
+            阿里云oss上传文件和文件夹
+          </a>
+        </span>
+      </div>
+    
+      
 
+      <div class="archive-post">
+        <span class="archive-post-time">
+          
+            2018-03-08
+          
+        </span>
+        <span class="archive-post-title">
+          <a href="/2018/03/08/spring-concurrent/" class="archive-post-link">
+            springboot 并发处理
+          </a>
+        </span>
+      </div>
+    
+      
+
+      <div class="archive-post">
+        <span class="archive-post-time">
+          
+            2017-11-30
+          
+        </span>
+        <span class="archive-post-title">
+          <a href="/2017/11/30/crypto-js/" class="archive-post-link">
+            crypto,js，java加密解密
+          </a>
+        </span>
+      </div>
+    
+      
+
+      <div class="archive-post">
+        <span class="archive-post-time">
+          
+            2017-02-10
+          
+        </span>
+        <span class="archive-post-title">
+          <a href="/2017/02/10/proxychains/" class="archive-post-link">
+            shadowsocks 科学上网的终端控制
+          </a>
+        </span>
+      </div>
+    
+      
+
+      <div class="archive-post">
+        <span class="archive-post-time">
+          
+            2017-02-09
+          
+        </span>
+        <span class="archive-post-title">
+          <a href="/2017/02/09/npm/" class="archive-post-link">
+            npm发布
+          </a>
+        </span>
+      </div>
     
   </section>
 
@@ -650,6 +363,7 @@
   </nav>
 
 
+
           </div>
           
 
@@ -662,7 +376,7 @@
     
       
         
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+          <a href="mailto:keeley.jun@email.com" class="iconfont icon-email" title="email"></a>
         
       
     
@@ -725,6 +439,8 @@
 
 
     
+  
+
 
 
 
@@ -737,6 +453,8 @@
     <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   
 
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
   
 
 

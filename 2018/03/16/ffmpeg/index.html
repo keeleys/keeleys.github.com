@@ -47,6 +47,8 @@
 
 
 
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
 
 
 
@@ -103,11 +105,29 @@
         </li>
       </a>
     
-      <a href="/archives/">
+      <a href="/tags">
         <li class="mobile-menu-item">
           
           
-            归档
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
           
         </li>
       </a>
@@ -134,10 +154,28 @@
         </li>
       
         <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
+          <a class="menu-item-link" href="/tags">
             
             
-              归档
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
             
           </a>
         </li>
@@ -175,7 +213,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#视频转换ffmpeg"><span class="toc-text">视频转换ffmpeg</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#转码"><span class="toc-text">转码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#改变分辨率"><span class="toc-text">改变分辨率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水印"><span class="toc-text">水印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#旋转"><span class="toc-text">旋转</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查询旋转"><span class="toc-text">查询旋转</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#旋转-1"><span class="toc-text">旋转</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#编码旋转"><span class="toc-text">编码旋转</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#不编码旋转"><span class="toc-text">不编码旋转</span></a></li></ol></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#视频转换ffmpeg"><span class="toc-text">视频转换ffmpeg</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#转码"><span class="toc-text">转码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#改变分辨率"><span class="toc-text">改变分辨率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水印"><span class="toc-text">水印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#旋转"><span class="toc-text">旋转</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查询旋转"><span class="toc-text">查询旋转</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#旋转-1"><span class="toc-text">旋转</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#编码旋转"><span class="toc-text">编码旋转</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#不编码旋转"><span class="toc-text">不编码旋转</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提取缩略图"><span class="toc-text">提取缩略图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#合成缩略图"><span class="toc-text">合成缩略图</span></a></li></ol></li></ol>
     </div>
   </div>
 
@@ -199,6 +237,8 @@
 <h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3><h4 id="查询旋转"><a href="#查询旋转" class="headerlink" title="查询旋转"></a>查询旋转</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i IMG_1821.MOV 2&gt;&amp;1 | grep rotate</span><br></pre></td></tr></table></figure>
 <h4 id="旋转-1"><a href="#旋转-1" class="headerlink" title="旋转"></a>旋转</h4><h5 id="编码旋转"><a href="#编码旋转" class="headerlink" title="编码旋转"></a>编码旋转</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">rem For the transpose parameter you can pass:</span><br><span class="line"></span><br><span class="line">rem 0 = 90逆时针并且垂直翻转(default)</span><br><span class="line">rem 1 = 90顺时针</span><br><span class="line">rem 2 = 90度逆时针</span><br><span class="line">rem 3 = 90顺时针并且垂直翻转</span><br><span class="line"></span><br><span class="line">rem To rotate 180 degrees, instead use &quot;transpose=2,transpose=2&quot;</span><br><span class="line"></span><br><span class="line">rem Using -codec:a copy will simply copy the audio instead of reencoding it.</span><br><span class="line"></span><br><span class="line">ffmpeg -i in.mp4 -vf &quot;transpose=1&quot; -codec:a copy out.mp4</span><br></pre></td></tr></table></figure>
 <h5 id="不编码旋转"><a href="#不编码旋转" class="headerlink" title="不编码旋转"></a>不编码旋转</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i IMG_1821.MOV -metadata:s:v rotate=&quot;0&quot; -codec copy output.mp4</span><br></pre></td></tr></table></figure>
+<h3 id="提取缩略图"><a href="#提取缩略图" class="headerlink" title="提取缩略图"></a>提取缩略图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -y -i WeChatSight1.mp4 -vf fps=1/1 -vsync vfr -vframes 8 -c:v mjpeg WeChatSight1_mp4_%d.jpg</span><br><span class="line">ffmpeg -skip_frame nokey -i &quot;keeley-0807.mp4&quot; -vsync 0 -vframes 9 -c:v mjpeg keeley-0807/thumb_%d.jpg</span><br></pre></td></tr></table></figure>
+<h3 id="合成缩略图"><a href="#合成缩略图" class="headerlink" title="合成缩略图"></a>合成缩略图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -y -i temp.mp4 -vf &quot;fps=1/2,scale=iw/4:-1,tile=10x10&quot; -an %d.png</span><br></pre></td></tr></table></figure>
 <p><a href="http://einverne.github.io/post/2015/12/ffmpeg-first.html" target="_blank" rel="noopener">http://einverne.github.io/post/2015/12/ffmpeg-first.html</a><br><a href="https://lars.st0ne.at/blog/html5+video+in+IE11+-+size+does+matter" target="_blank" rel="noopener">https://lars.st0ne.at/blog/html5+video+in+IE11+-+size+does+matter</a><br><a href="https://trac.ffmpeg.org/wiki/Encode/H.264" target="_blank" rel="noopener">https://trac.ffmpeg.org/wiki/Encode/H.264</a><br><a href="http://www.cnblogs.com/tinywan/p/6404411.html" target="_blank" rel="noopener">http://www.cnblogs.com/tinywan/p/6404411.html</a><br><a href="http://www.cnblogs.com/tinywan/p/7877738.html" target="_blank" rel="noopener">http://www.cnblogs.com/tinywan/p/7877738.html</a><br><a href="http://blog.csdn.net/leixiaohua1020/article/category/1360795" target="_blank" rel="noopener">http://blog.csdn.net/leixiaohua1020/article/category/1360795</a><br><a href="https://www.jianshu.com/p/053665062f22" target="_blank" rel="noopener">https://www.jianshu.com/p/053665062f22</a><br><a href="https://support.google.com/youtube/answer/2853702?hl=zh-Hans" target="_blank" rel="noopener">https://support.google.com/youtube/answer/2853702?hl=zh-Hans</a><br><code>`</code></p>
 
       
@@ -281,7 +321,7 @@
     
       
         
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+          <a href="mailto:keeley.jun@email.com" class="iconfont icon-email" title="email"></a>
         
       
     
@@ -365,6 +405,8 @@
 
 
     
+  
+
 
 
 
@@ -377,6 +419,8 @@
     <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   
 
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
   
 
 
