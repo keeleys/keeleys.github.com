@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="win7-8安装docker"/>
+
+
+
+
+  <meta name="keywords" content="docker, 凉水" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="凉水">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1" />
+
+
+
+<link rel="canonical" href="http://www.sitec.cc/2018/11/12/win8-docker/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1" />
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"title":"凉水","subtitle":"凉水.","description":"程序员,java,互联网,学习","author":"keeleys","language":"zh-CN","timezone":null,"url":"http://www.sitec.cc","root":"/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":year-:month-:day-:title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"git@github.com:keeleys/keeleys.github.com.git"},"ignore":[],"sitemap":{"path":"sitemap.xml"},"baidusitemap":{"path":"baidusitemap.xml"},"duoshuo_shortname":"keeley","jiathis":false,"duoshuo_share":true,"social":{"email":"keeley.jun@email.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/keeleys","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"creative_commons":"by-nc-sa","baidu_analytics":null,"since":2015,"avatar":"https://dn-keeley.qbox.me/artive.jpeg","category_generator":{"per_page":10},"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"tag_generator":{"per_page":10},"index_generator":{"per_page":10,"order_by":"-date"},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"favicon":"/favicon.ico","rss":"default","menu":{"Home":"/","Tags":"/tags","Categories":"/categories","About":"/about"},"color":"cobalt blue","mode":"archives","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"leancloud":{"app_id":null,"app_key":null},"baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":"sitecc","changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.10.1"};
+</script>
+
+    <title> win7-8安装docker - 凉水 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">凉水</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">凉水</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          win7-8安装docker
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-11-12
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#win7-8安装docker"><span class="toc-text">win7-8安装docker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#官网下载"><span class="toc-text">官网下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-Toolbox"><span class="toc-text">docker Toolbox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Toolbox"><span class="toc-text">安装Toolbox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#镜像加速"><span class="toc-text">镜像加速</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置代理"><span class="toc-text">配置代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#然后就搞定了。"><span class="toc-text">然后就搞定了。</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h2 id="win7-8安装docker"><a href="#win7-8安装docker" class="headerlink" title="win7-8安装docker"></a>win7-8安装docker</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>家里还是有个老旧win台式机的，平时不带电脑的时候可以利用下，就来一篇老旧系统安装docker教程吧（其实官网也很详细了。。）</p>
+<h3 id="官网下载"><a href="#官网下载" class="headerlink" title="官网下载"></a>官网下载</h3><p>首先打开官网按官网的步骤看看 <a href="https://docs.docker.com/docker-for-windows/" target="_blank" rel="noopener">https://docs.docker.com/docker-for-windows/</a><br>官网自然是推荐直接安装哇，但是要系统Windows 10 64bit，系统14393 以上，估计一般win10都满足吧</p>
+<p>那么如果不是win10，根据官网提示， 需要安装 Docker Toolbox 配合 Oracle Virtual Box 来使用<br>进入 <a href="https://docs.docker.com/toolbox/overview/" target="_blank" rel="noopener">https://docs.docker.com/toolbox/overview/</a> 看看安装步骤</p>
+<h3 id="docker-Toolbox"><a href="#docker-Toolbox" class="headerlink" title="docker Toolbox"></a>docker Toolbox</h3><p>Toolbox include是一个<code>docker工具</code> 包含如下几个方面:</p>
+<ul>
+<li>Docker Machine for running docker-machine commands，操作docker虚拟器的命令吧</li>
+<li>Docker Engine for running the docker commands，操作docker的命令哦，关键</li>
+<li>Docker Compose for running the docker-compose commands，这个容器编排用的，也要装</li>
+<li>Docker图形界面Kitematic，这个可选的装，我是没装咯，可以直接命令行看</li>
+<li>在cmd上面运行需要的预配置</li>
+<li>虚拟机Oracle VirtualBox</li>
+</ul>
+<p>当然安装他也是有条件的，电脑必须是64位，win7以上的系统，并且要开启虚拟化(<code>virtualization</code>),<br>win8可以直接任务管理器那里看是否打开了，win7好像要装工具<br><img src="https://docs.docker.com/toolbox/images/virtualization.png" alt=""><br>那么就开始安装吧，附上官网的教程<br><a href="https://docs.docker.com/toolbox/toolbox_install_windows/" target="_blank" rel="noopener">https://docs.docker.com/toolbox/toolbox_install_windows/</a><br>打开上面的链接，点那个 <code>Get Docker Toolbox for Windows</code>这个大按钮就能下载安装包咯。</p>
+<h3 id="安装Toolbox"><a href="#安装Toolbox" class="headerlink" title="安装Toolbox"></a>安装Toolbox</h3><p>下载之后双击安装，装完之后看下桌面的图标,(vm预装啦，quick需要运行的，kitematic选装的)<br><img src="https://docs.docker.com/toolbox/images/icon-set.png" alt=""><br>点击那个Docker Quickstart Terminal，然后第一次一堆东西需要设置啦，等他跑完，就见到成功的画面啦（后面也可以直接cmd运行docker启动，不需要它了）。<br><img src="http://ww1.sinaimg.cn/thumbnail/7c8c459dgy1g0xi7zbm8rj20it0hndfv.jpg" alt=""><br>输入<code>docker run hello-world</code>看看效果<br><img src="http://ww1.sinaimg.cn/large/7c8c459dgy1g0xii1e8waj20i3047jra.jpg" alt=""><br>好像镜像拉取超时了,尴尬，想着去配置下docker加速吧。。</p>
+<h3 id="镜像加速"><a href="#镜像加速" class="headerlink" title="镜像加速"></a>镜像加速</h3><p>网上搜索下docker加速，我选了这个国内镜像，打开这个地址去配置下 <a href="http://guide.daocloud.io/dcs/daocloud-9153151.html#docker-toolbox，拉倒最下面。" target="_blank" rel="noopener">http://guide.daocloud.io/dcs/daocloud-9153151.html#docker-toolbox，拉倒最下面。</a><br>关闭那个toobox命令框，用gitbash(试过cmd，乱码不靠谱) 运行下面这段，你的加速地址替换下哦。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker-machine ssh default</span><br><span class="line">sudo sed -i &quot;s|EXTRA_ARGS=&apos;|EXTRA_ARGS=&apos;--registry-mirror=http://xxx.m.daocloud.io |g&quot; /var/lib/boot2docker/profile</span><br><span class="line">exit</span><br><span class="line">docker-machine restart default</span><br></pre></td></tr></table></figure></p>
+<p>然后静静的等它重启重新配置完，再运行<code>docker run hello-world</code>。</p>
+<blockquote>
+<p>然后貌似并没有效果。。。</p>
+</blockquote>
+<p>转战aliyun，<a href="https://cr.console.aliyun.com/cn-hangzhou/mirrors" target="_blank" rel="noopener">https://cr.console.aliyun.com/cn-hangzhou/mirrors</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 删除默认镜像</span><br><span class="line">docker-machine rm default</span><br><span class="line"># xxxx自己替换</span><br><span class="line">docker-machine create --engine-registry-mirror=https://xxxxxx.mirror.aliyuncs.com -d virtualbox default</span><br><span class="line"></span><br><span class="line">查看机器的环境配置，并配置到本地，并通过Docker客户端访问Docker服务</span><br><span class="line">docker-machine env default</span><br><span class="line">eval &quot;$(docker-machine env default)&quot;</span><br><span class="line">docker info</span><br></pre></td></tr></table></figure></p>
+<p>不过好像我还是一直出错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error response from daemon: Get https://registry-1.docker.io/v2/: dial tcp: lookup registry-1.docker.io on 10.0.2.3:53: read udp 10.0.2.15:50679-&gt;10.0.2.3:53: i/o timeout.</span><br></pre></td></tr></table></figure></p>
+<h3 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a>配置代理</h3><p>curl -I 那个加速地址是没问题的，估计需要配置代理吧ε=(´ο｀*)))；我用的shadowsocks咯，你们看自己情况，不要用127的本地ip，docker运行在虚拟机呢，用你电脑的局域网ip，类似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 进去虚拟机</span><br><span class="line">docker-machine env default</span><br><span class="line"># 修改配置</span><br><span class="line">sudo vi /var/lib/boot2docker/profile</span><br><span class="line">export HTTP_PROXY=&quot;192.168.2.163:1080&quot;</span><br><span class="line">export HTTPS_PROXY=&quot;192.168.2.163:1080&quot;</span><br><span class="line"># 重启下咯</span><br><span class="line">sudo /etc/init.d/docker restart</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></p>
+<p>记得配置ssh的局域网连接，ε=(´ο｀*)))<br><img src="http://ww1.sinaimg.cn/large/7c8c459dgy1g0xkon267vj207j081aa7.jpg" alt=""></p>
+<h3 id="然后就搞定了。"><a href="#然后就搞定了。" class="headerlink" title="然后就搞定了。"></a>然后就搞定了。</h3><p><img src="http://ww1.sinaimg.cn/large/7c8c459dgy1g0xknt1thzj20rs0frt9n.jpg" alt=""></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.sitec.cc">keeleys</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.sitec.cc/2018/11/12/win8-docker/">http://www.sitec.cc/2018/11/12/win8-docker/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/docker/">docker</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/03/11/preformance-optimization/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">分享下平台优化经验</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/09/30/idea-style/">
+        <span class="next-text nav-default">Intellij IDEA 代码格式化</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:keeley.jun@email.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/keeleys" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">keeleys</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://www.sitec.cc/2018/11/12/win8-docker/';
+        this.page.identifier = '2018/11/12/win8-docker/';
+        this.page.title = 'win7-8安装docker';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//sitecc.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
