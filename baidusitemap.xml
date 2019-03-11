@@ -4,6 +4,94 @@
 
     
   <url>
+    <loc>http://www.sitec.cc/2016/03/13/docker/</loc>
+    <lastmod>2019-03-11T07:05:20.237Z</lastmod>
+    <data>
+        <display>
+        <title>docker学习一（常用命令）</title>
+        <pubTime>2016-03-13T08:23:00.000Z</pubTime>
+        
+        <tag>docker</tag>
+         
+         
+           
+             
+              <breadCrumb title="docker" url="http://www.sitec.cc/categories/docker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.sitec.cc/2016/02/02/shadowsocks/</loc>
+    <lastmod>2019-03-11T07:03:30.026Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu安装Shadowsocks服务</title>
+        <pubTime>2016-02-02T07:29:02.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.sitec.cc/2016/05/17/php-docker/</loc>
+    <lastmod>2019-03-11T07:03:08.161Z</lastmod>
+    <data>
+        <display>
+        <title>docker 运行php</title>
+        <pubTime>2016-05-17T07:28:08.000Z</pubTime>
+        
+        <tag>docker</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.sitec.cc/2016/06/30/2016-06-30-ssh-config/</loc>
+    <lastmod>2019-03-11T07:01:52.374Z</lastmod>
+    <data>
+        <display>
+        <title>多远程服务的.ssh配置</title>
+        <pubTime>2016-06-30T05:24:02.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.sitec.cc/2017/02/10/proxychains/</loc>
+    <lastmod>2019-03-11T07:00:42.661Z</lastmod>
+    <data>
+        <display>
+        <title>shadowsocks终端翻墙</title>
+        <pubTime>2017-02-10T06:32:43.000Z</pubTime>
+        
+        <tag>util</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.sitec.cc/2019/03/11/preformance-optimization/</loc>
     <lastmod>2019-03-11T06:24:01.585Z</lastmod>
     <data>
@@ -32,21 +120,6 @@
         
         <tag>docker</tag>
          
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.sitec.cc/2018/08/13/docker-tips/</loc>
-    <lastmod>2018-09-30T05:58:36.000Z</lastmod>
-    <data>
-        <display>
-        <title>docker-tips</title>
-        <pubTime>2018-08-13T03:35:05.000Z</pubTime>
-        
          
            
         </display>
@@ -433,38 +506,6 @@
 
     
   <url>
-    <loc>http://www.sitec.cc/2016/05/17/php-docker/</loc>
-    <lastmod>2018-04-24T02:06:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>docker 运行php</title>
-        <pubTime>2016-05-17T07:28:08.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.sitec.cc/2016/02/02/shadowsocks/</loc>
-    <lastmod>2018-04-24T02:06:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Ubuntu安装Shadowsocks</title>
-        <pubTime>2016-02-02T07:29:02.000Z</pubTime>
-        
-        <tag>linux</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.sitec.cc/2016/06/30/2016-06-30-hexo-fq/</loc>
     <lastmod>2018-04-24T02:06:45.000Z</lastmod>
     <data>
@@ -473,25 +514,6 @@
         <pubTime>2016-06-30T06:26:06.000Z</pubTime>
         
         <tag>hexo</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.sitec.cc/2016/06/30/2016-06-30-ssh-config/</loc>
-    <lastmod>2018-04-24T02:06:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>多远程服务的.ssh配置</title>
-        <pubTime>2016-06-30T05:24:02.000Z</pubTime>
-        
-        <tag>linux</tag>
-         
-        <tag>mac</tag>
          
          
            
@@ -535,23 +557,6 @@
 
     
   <url>
-    <loc>http://www.sitec.cc/2017/02/10/proxychains/</loc>
-    <lastmod>2018-04-24T02:06:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>shadowsocks 科学上网的终端控制</title>
-        <pubTime>2017-02-10T06:32:43.000Z</pubTime>
-        
-        <tag>util</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.sitec.cc/2017/11/30/crypto-js/</loc>
     <lastmod>2018-04-24T02:06:45.000Z</lastmod>
     <data>
@@ -577,40 +582,6 @@
         <pubTime>2018-03-08T09:52:17.000Z</pubTime>
         
         <tag>java</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.sitec.cc/2016/06/30/2016-06-30-html5-theme/</loc>
-    <lastmod>2018-04-24T02:06:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>html5的模版推荐</title>
-        <pubTime>2016-06-30T07:14:04.000Z</pubTime>
-        
-        <tag>html5</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.sitec.cc/2016/06/27/2016-07-01-github-star/</loc>
-    <lastmod>2018-04-24T02:06:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>github-star</title>
-        <pubTime>2016-06-27T05:59:58.000Z</pubTime>
-        
-        <tag>github</tag>
          
          
            
@@ -695,26 +666,6 @@
            
              
               <breadCrumb title="ios" url="http://www.sitec.cc/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.sitec.cc/2016/03/13/docker/</loc>
-    <lastmod>2018-04-24T02:06:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>docker学习一（常用命令）</title>
-        <pubTime>2016-03-13T08:23:00.000Z</pubTime>
-        
-        <tag>docker</tag>
-         
-         
-           
-             
-              <breadCrumb title="docker" url="http://www.sitec.cc/categories/docker/"/>
           
         </display>
     </data>
