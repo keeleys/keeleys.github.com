@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Mysql死锁情况分析"/>
+
+
+
+
+  <meta name="keywords" content="data, 凉水" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="凉水">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1" />
+
+
+
+<link rel="canonical" href="http://www.sitec.cc/2019/04/25/mysql-lock/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1" />
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"title":"凉水","subtitle":"凉水.","description":"程序员,java,互联网,学习","author":"keeleys","language":"zh-CN","timezone":null,"url":"http://www.sitec.cc","root":"/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":year-:month-:day-:title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"git@github.com:keeleys/keeleys.github.com.git"},"ignore":[],"sitemap":{"path":"sitemap.xml"},"baidusitemap":{"path":"baidusitemap.xml"},"duoshuo_shortname":"keeley","jiathis":false,"duoshuo_share":true,"social":{"email":"keeley.jun@email.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/keeleys","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"creative_commons":"by-nc-sa","baidu_analytics":null,"since":2015,"avatar":"https://dn-keeley.qbox.me/artive.jpeg","archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"tag_generator":{"per_page":10},"index_generator":{"per_page":10,"order_by":"-date"},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"favicon":"/favicon.ico","rss":"default","menu":{"Home":"/","Tags":"/tags","Categories":"/categories","About":"/about"},"color":"default","mode":"archives","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"leancloud":{"app_id":null,"app_key":null},"baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":"sitecc","changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.10.1"};
+</script>
+
+    <title> Mysql死锁情况分析 - 凉水 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">凉水</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">凉水</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Mysql死锁情况分析
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-04-25
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前提"><span class="toc-text">前提</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#我们来分析下InnoDB的锁类型"><span class="toc-text">我们来分析下InnoDB的锁类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Shared-and-Exclusive-Locks"><span class="toc-text">Shared and Exclusive Locks</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些会死锁的地方"><span class="toc-text">一些会死锁的地方</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#next-key-lock"><span class="toc-text">next-key lock</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么减少死锁"><span class="toc-text">怎么减少死锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解锁"><span class="toc-text">解锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#业务例子"><span class="toc-text">业务例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看锁的日志"><span class="toc-text">查看锁的日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>目前使用的mysql,Innodb数据库.默认的隔离级别是<code>REPEATABLE-READ</code> (可重复读)</p>
+<p><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks.html" target="_blank" rel="noopener">https://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks.html</a></p>
+<h3 id="我们来分析下InnoDB的锁类型"><a href="#我们来分析下InnoDB的锁类型" class="headerlink" title="我们来分析下InnoDB的锁类型"></a>我们来分析下InnoDB的锁类型</h3><h4 id="Shared-and-Exclusive-Locks"><a href="#Shared-and-Exclusive-Locks" class="headerlink" title="Shared and Exclusive Locks"></a>Shared and Exclusive Locks</h4><ul>
+<li>共享(s)锁允许事物持锁来读取行.</li>
+<li>独占(x)锁允许事物持锁来更新和删除行.</li>
+</ul>
+<p>如果事物T1获取了一个行r的读锁,那么一个其他的事物T2可能有如下情况</p>
+<ul>
+<li>可以立即授予T2对S锁的请求。 结果，T1和T2都在r上保持S锁定。</li>
+<li>T2的X锁定请求不能立即授予。</li>
+</ul>
+<p>如果事务T1在行r上保持独占（X）锁定，则不能立即授予来自某个不同事务T2的对r上任一类型的锁的请求。 相反，事务T2必须等待事务T1释放其对Row r的锁定。</p>
+<p>1，Record Lock：单个行记录上的锁。</p>
+<p>2，Gap Lock：间隙锁，锁定一个范围，但不包括记录本身。GAP锁的目的，是为了防止同一事务的两次当前读，出现幻读的情况。gap锁的目的，只要把握一点：就是让后续不能插入满足条件的新纪录</p>
+<p>3，Next-Key Lock：1+2，锁定一个范围，并且锁定记录本身。对于行的查询，都是采用该方法，主要目的是解决幻读的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">For locking reads (SELECT with FOR UPDATE or LOCK IN SHARE MODE), UPDATE, and DELETE statements, locking depends on whether the statement uses a unique index with a unique search condition, or a range-type search condition.</span><br><span class="line"> </span><br><span class="line"> * For a unique index with a unique search condition, InnoDB locks only the index record found, not the gap before it.</span><br><span class="line"> </span><br><span class="line"> * For other search conditions, InnoDB locks the index range scanned, using gap locks or next-key locks to block insertions by other sessions into the gaps covered by the range.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select @@global.tx_isolation;</span><br></pre></td></tr></table></figure>
+<h2 id="一些会死锁的地方"><a href="#一些会死锁的地方" class="headerlink" title="一些会死锁的地方"></a>一些会死锁的地方</h2><h3 id="next-key-lock"><a href="#next-key-lock" class="headerlink" title="next-key lock"></a>next-key lock</h3><blockquote>
+<p>在InnoDB引擎下，RR(REPEATABLE-READ)级别，如果多个事务争抢同一个资源，会发生死锁。在RR级别下，MySQL提供了next-key lock。假如一个索引的行有10,11,13,20 那么可能的next-key lock的包括： (无穷小, 10] (10,11] (11,13] (13,20] (20, 无穷大)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `user` (</span><br><span class="line"> `id` int(11) unsigned NOT NULL AUTO_INCREMENT,</span><br><span class="line"> `name` varchar(200) DEFAULT NULL,</span><br><span class="line"> `age` int(11) DEFAULT NULL,</span><br><span class="line"> PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=1111 DEFAULT CHARSET=utf8;</span><br><span class="line"> </span><br><span class="line">-- 数据</span><br><span class="line">5 ac 10</span><br><span class="line">26 ac 10</span><br><span class="line">31 ac 10</span><br><span class="line">35 ac 10</span><br><span class="line">101 ac 10</span><br><span class="line">102 ac 10</span><br><span class="line">103 ac 10</span><br><span class="line">107 ac 10</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>第一个session</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- 每个链接都设置下,不自动提交</span><br><span class="line">SET autocommit = 0;</span><br><span class="line">-- 这时候会锁住 33-35之间的数据</span><br><span class="line">update user set name = &apos;acc&apos; where id=33 ;</span><br><span class="line">-- 等第2个session的第4行做完了再执行这条,就会出现等待了..</span><br><span class="line">insert into user values(35,&apos;ac&apos;,10);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二个session</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- 每个链接都设置下,不自动提交</span><br><span class="line">SET autocommit = 0;</span><br><span class="line">-- 这时候会锁住 33-35之间的数据</span><br><span class="line">update user set name = &apos;acc&apos; where id=34 ;</span><br><span class="line">-- 等第1个session的第4行做完了再执行这条,就会出现等待了..</span><br><span class="line">insert into user values(34,&apos;ac&apos;,10);</span><br><span class="line">-- Deadlock found when trying to get lock; try restarting transaction</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://pic.yupoo.com/hedengcheng/DnJ6RTaA/medish.jpg" alt="img"></p>
+<p><img src="http://pic.yupoo.com/hedengcheng/DnJ6S9J0/medish.jpg" alt="img"></p>
+<h2 id="怎么减少死锁"><a href="#怎么减少死锁" class="headerlink" title="怎么减少死锁"></a>怎么减少死锁</h2><blockquote>
+<p>死锁是事务数据库中的一个典型问题，但它们并不危险，除非它们如此频繁以至于根本无法运行某些事务。通常，您必须编写应用程序，以便在由于死锁而回滚时，它们始终准备重新发出事务。</p>
+</blockquote>
+<ol>
+<li><p>在任何时候使用<code>SHOW ENGINE INNODB STATUS</code>命令以确定最近死锁的原因。这可以帮助您调整应用程序以避免死锁</p>
+</li>
+<li><p>如果频繁出现死锁警告，请通过启用innodb_print_all_deadlocks配置选项来收集更多的调试信息。有关每个死锁的信息，而不仅仅是最新的死锁，都记录在MySQL错误日志中。完成调试后禁用此选项。</p>
+</li>
+<li><p>如果由于死锁而失败，请始终准备重新发布事务。死锁并不危险。再试一次。</p>
+</li>
+<li><p>保持事物小并且持续时间短来减少冲突</p>
+</li>
+<li><p>在进行一组相关更改后立即提交事务，以使它们不易发生冲突。特别是，不要让未提交的事务使交互式mysql会话长时间保持打开状态。</p>
+</li>
+<li><p>在事务中修改多个表或同一个表中的不同行时，每次都以一致的顺序执行这些操作。然后事务形成定义良好的队列，不会死锁。例如，将数据库操作放到应用程序中的函数方法中，或调用存储的例程，而不是在不同的位置编写多个类似的INSERT，UPDATE和DELETE语句序列。</p>
+</li>
+<li><p>在表中添加精心选择的索引。然后，您的查询需要扫描更少的索引记录，从而设置更少的锁。使用EXPLAIN SELECT确定MySQL服务器认为哪些索引最适合您的查询。</p>
+</li>
+<li><p>使用较少的锁定。如果您能够允许SELECT从旧快照返回数据，请不要在其中添加FOR UPDATE或LOCK IN SHARE MODE子句。</p>
+</li>
+<li><p>最后,还可以使用表锁来操作,带价是会降低并发量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SET autocommit=0;</span><br><span class="line">LOCK TABLES t1 WRITE, t2 READ, ...;</span><br><span class="line">... do something with tables t1 and t2 here ...</span><br><span class="line">COMMIT;</span><br><span class="line">UNLOCK TABLES;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>序列化事务的另一种方法是创建一个只包含一行的辅助“信号量”表。 让每个事务在访问其他表之前更新该行。 这样，所有事务都以串行方式发生。</p>
+</li>
+</ol>
+<h2 id="解锁"><a href="#解锁" class="headerlink" title="解锁"></a>解锁</h2><ol>
+<li>查看当前事物 <code>SELECT * FROM INFORMATION_SCHEMA.INNODB_TRX;</code></li>
+<li>查看当前锁定的事务 <code>SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCKS;</code></li>
+<li>查看当前等锁的事务<code>SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS;</code></li>
+</ol>
+<ul>
+<li>查询是否锁表<code>show OPEN TABLES where In_use &gt; 0</code>;</li>
+<li>查询进程<code>show processlist</code>;</li>
+<li>找到锁进程，kill id ;</li>
+</ul>
+<h2 id="业务例子"><a href="#业务例子" class="headerlink" title="业务例子"></a>业务例子</h2><p>这种频繁更新的时候,update更新的时候会请求锁,并发量大的时候造成排队等锁现象.应该在redis或者mq里面操作</p>
+<p><img src="https://i.loli.net/2019/04/25/5cc151c1d435b.png" alt="image2019-4-3 19_10_47.png"></p>
+<h2 id="查看锁的日志"><a href="#查看锁的日志" class="headerlink" title="查看锁的日志"></a>查看锁的日志</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show engine innodb status;</span><br></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://hedengcheng.com/?p=771#_Toc374698322" target="_blank" rel="noopener">http://hedengcheng.com/?p=771#_Toc374698322</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.sitec.cc">keeleys</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.sitec.cc/2019/04/25/mysql-lock/">http://www.sitec.cc/2019/04/25/mysql-lock/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/data/">data</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/03/27/jdk-source-read-01/">
+        <span class="next-text nav-default">Jdk源码阅读-lang包</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:keeley.jun@email.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/keeleys" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">keeleys</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://www.sitec.cc/2019/04/25/mysql-lock/';
+        this.page.identifier = '2019/04/25/mysql-lock/';
+        this.page.title = 'Mysql死锁情况分析';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//sitecc.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
